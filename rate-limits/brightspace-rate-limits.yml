@@ -1,0 +1,72 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: D2L Brightspace
+providerId: brightspace
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- LMS
+- Learning Management System
+- EdTech
+- Education
+- Rate Limiting
+- Quotas
+description: >-
+  D2L Brightspace does not publish fixed numeric per-second or per-minute rate
+  limits for the Valence Learning Framework API. Because the API is served from
+  each institution's own Brightspace instance, effective throughput depends on
+  the capacity of that deployment and on D2L's platform protections. In practice
+  D2L applies server-side throttling and abuse protection, and integrations are
+  expected to page large result sets with bookmarks rather than pull everything
+  at once, and to schedule heavy or bulk work off-peak. For large-volume
+  institutional data, D2L directs integrators to the Data Hub / Brightspace Data
+  Sets bulk export path (asynchronous export jobs producing CSV/ZIP files)
+  instead of high-frequency per-record REST calls. OAuth 2 access tokens are
+  short-lived and must be refreshed with the issued refresh token.
+notes: >-
+  No official numeric API rate-limit table is documented as of the review date.
+  Confirm any per-instance throttling thresholds, concurrency guidance, and Data
+  Hub export scheduling with D2L for the target institution during
+  reconciliation.
+sources:
+- https://docs.valence.desire2learn.com/basic/apicall.html
+- https://docs.valence.desire2learn.com/basic/oauth2.html
+- https://docs.valence.desire2learn.com/res/dataExport.html
+- https://community.d2l.com/brightspace/kb/articles/21863-how-to-get-started-with-oauth-2-0
+responseCodes:
+  throttled: 429
+limits:
+- name: Valence API Requests
+  scope: instance
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented; throughput is bounded by the institution's Brightspace deployment and D2L platform protections.
+- name: Paged Result Retrieval
+  scope: endpoint
+  metric: items
+  limit: bookmark-paged
+  notes: Large collections (users, enrollments, quizzes) are returned in pages; follow the PagingInfo bookmark rather than requesting unbounded result sets.
+- name: Data Hub Export Jobs
+  scope: instance
+  metric: jobs
+  limit: scheduled / asynchronous
+  notes: Bulk institutional data is retrieved via asynchronous Data Export Framework jobs and Brightspace Data Sets extracts, not high-frequency REST polling.
+- name: OAuth Access Token Lifetime
+  scope: application
+  metric: token
+  limit: short-lived (refresh required)
+  notes: Access tokens expire quickly; use the refresh token from the authorization code grant to obtain new access tokens.
+policies:
+- name: Pagination
+  description: Use the returned PagingInfo bookmark to page through large collections instead of pulling all records in one call.
+- name: Bulk Data Offload
+  description: Prefer the Data Hub / Brightspace Data Sets bulk export path for reporting and warehousing workloads rather than iterating REST endpoints.
+- name: Backoff Strategy
+  description: On HTTP 429 or transient errors, implement exponential backoff with jitter and retry rather than hammering the instance.
+- name: Off-Peak Scheduling
+  description: Schedule large synchronization and export jobs outside of peak instructional hours to avoid contending with interactive user load.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

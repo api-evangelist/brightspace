@@ -1,0 +1,284 @@
+{
+  "info": {
+    "name": "D2L Brightspace Valence API",
+    "description": "The Valence Learning Framework API is the public REST API for the D2L Brightspace LMS, served from an institution's own host under https://{host}/d2l/api/. It splits into two product components: lp (Learning Platform - users, roles, enrollments, org units, Data Hub) and le (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, learning outcomes). Each component is independently versioned; the version segment (for example lp/1.53 or le/1.92) varies per instance - confirm supported versions via GET /d2l/api/versions/. Authentication uses OAuth 2 bearer tokens issued by the D2L auth service (authorization code grant); the legacy ID-Key scheme is deprecated. Set the host, version, orgUnitId, and bearerToken variables before use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "host", "value": "myschool.brightspace.com", "type": "string" },
+    { "key": "lpVersion", "value": "1.53", "type": "string" },
+    { "key": "leVersion", "value": "1.92", "type": "string" },
+    { "key": "orgUnitId", "value": "6606", "type": "string" },
+    { "key": "userId", "value": "", "type": "string" },
+    { "key": "bearerToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get current user context (whoami)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/users/whoami", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "users", "whoami"] },
+            "description": "Retrieves the identity the current access token is acting as."
+          }
+        },
+        {
+          "name": "List or search users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/users/?orgDefinedId=", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "users", ""], "query": [{ "key": "orgDefinedId", "value": "" }] },
+            "description": "Retrieves a paged list of users, optionally filtered."
+          }
+        },
+        {
+          "name": "Create a user",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"OrgDefinedId\": \"stu-001\",\n  \"FirstName\": \"Jane\",\n  \"MiddleName\": \"\",\n  \"LastName\": \"Doe\",\n  \"ExternalEmail\": \"jane.doe@example.edu\",\n  \"UserName\": \"jdoe\",\n  \"RoleId\": 110,\n  \"IsActive\": true,\n  \"SendCreationEmail\": false\n}" },
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/users/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "users", ""] },
+            "description": "Creates a new user account."
+          }
+        },
+        {
+          "name": "Get a user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/users/{{userId}}", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "users", "{{userId}}"] },
+            "description": "Retrieves a single user by identifier."
+          }
+        },
+        {
+          "name": "List roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/roles/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "roles", ""] },
+            "description": "Retrieves the roles defined on the organization."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "List users enrolled in an org unit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/enrollments/orgUnits/{{orgUnitId}}/users/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "enrollments", "orgUnits", "{{orgUnitId}}", "users", ""] },
+            "description": "Retrieves the users enrolled in an org unit."
+          }
+        },
+        {
+          "name": "List the caller's enrollments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/enrollments/myenrollments/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "enrollments", "myenrollments", ""] },
+            "description": "Retrieves the current user's own enrollments."
+          }
+        },
+        {
+          "name": "Enroll a user",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"OrgUnitId\": {{orgUnitId}},\n  \"UserId\": 0,\n  \"RoleId\": 110\n}" },
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/enrollments/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "enrollments", ""] },
+            "description": "Enrolls a user in an org unit with a role."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Org Units",
+      "item": [
+        {
+          "name": "List org units",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/orgstructure/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "orgstructure", ""] },
+            "description": "Retrieves a paged list of org units."
+          }
+        },
+        {
+          "name": "Get organization info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/organization/info", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "organization", "info"] },
+            "description": "Retrieves top-level organization information."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "item": [
+        {
+          "name": "Get root content modules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/content/root/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "content", "root", ""] },
+            "description": "Retrieves the root modules (table of contents) for a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Grades",
+      "item": [
+        {
+          "name": "List grade objects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/grades/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "grades", ""] },
+            "description": "Retrieves the grade objects in a course gradebook."
+          }
+        },
+        {
+          "name": "Get a user's final grade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/grades/final/values/{{userId}}", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "grades", "final", "values", "{{userId}}"] },
+            "description": "Retrieves a user's final calculated/adjusted grade."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assignments",
+      "item": [
+        {
+          "name": "List assignment folders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/dropbox/folders/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "dropbox", "folders", ""] },
+            "description": "Retrieves the assignment (dropbox) folders in a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quizzes",
+      "item": [
+        {
+          "name": "List quizzes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/quizzes/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "quizzes", ""] },
+            "description": "Retrieves the quizzes in a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Discussions",
+      "item": [
+        {
+          "name": "List discussion forums",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/discussions/forums/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "discussions", "forums", ""] },
+            "description": "Retrieves the discussion forums in a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Calendar",
+      "item": [
+        {
+          "name": "List calendar events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/calendar/events/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "calendar", "events", ""] },
+            "description": "Retrieves the calendar events for a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "News",
+      "item": [
+        {
+          "name": "List news items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/{{orgUnitId}}/news/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "{{orgUnitId}}", "news", ""] },
+            "description": "Retrieves the news (announcement) items in a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Learning Outcomes",
+      "item": [
+        {
+          "name": "List organization outcome sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/le/{{leVersion}}/lo/outcomeSets/", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "le", "{{leVersion}}", "lo", "outcomeSets", ""] },
+            "description": "Retrieves the organization-level learning outcome sets."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data Hub",
+      "item": [
+        {
+          "name": "List available data sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/dataExport/list", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "dataExport", "list"] },
+            "description": "Lists the data sets available through the Data Export Framework."
+          }
+        },
+        {
+          "name": "Create an export job",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"DataSetId\": \"\",\n  \"Filters\": []\n}" },
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/dataExport/create", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "dataExport", "create"] },
+            "description": "Creates an export job for a requested data set."
+          }
+        },
+        {
+          "name": "List Brightspace Data Sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://{{host}}/d2l/api/lp/{{lpVersion}}/datasets/bds", "protocol": "https", "host": ["{{host}}"], "path": ["d2l", "api", "lp", "{{lpVersion}}", "datasets", "bds"] },
+            "description": "Retrieves the Brightspace Data Sets schemas and extracts."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: D2L Brightspace
+providerId: brightspace
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- LMS
+- Learning Management System
+- EdTech
+- Education
+- Plans
+description: >-
+  D2L Brightspace is sold as an enterprise learning platform under institutional
+  license and does not publish public, self-service pricing for the platform or
+  for its Valence Learning Framework API. Access to the API is included with a
+  Brightspace subscription: any licensed institution can register API
+  applications (OAuth 2 clients) through the Brightspace Extensibility / Manage
+  Extensibility tools at no additional per-call fee. Pricing for Brightspace
+  itself, and for add-on products such as Brightspace Data Sets / Data Hub,
+  Brightspace for Business, and various engagement and analytics packages, is
+  negotiated per contract based on organization size (FTE / enrolled learners),
+  edition, and selected modules. There is no free public developer tier;
+  developers typically work against an institution's instance or a D2L-provided
+  test/sandbox environment.
+notes: >-
+  All figures are contact-sales. The API is not separately metered or billed -
+  it is a capability of the licensed platform. Verify current editions, module
+  bundles, and any Data Hub / Advanced Data Sets licensing with D2L sales during
+  reconciliation.
+sources:
+- https://www.d2l.com/pricing/
+- https://www.d2l.com
+- https://docs.valence.desire2learn.com/basic/oauth2.html
+- https://community.d2l.com/brightspace/kb/articles/21863-how-to-get-started-with-oauth-2-0
+plans:
+- id: brightspace-institution
+  name: Brightspace Institutional License
+  type: enterprise
+  description: >-
+    Core Brightspace LMS license for a higher education, K-12, or government
+    institution, sized by full-time-equivalent enrollment. Includes the Learning
+    Environment and Learning Platform, and access to register Valence API (OAuth
+    2) applications against the institution's instance at no extra per-call cost.
+  entries:
+  - label: Institutional Subscription
+    name: institution_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Learning Environment (le) API
+  - name: Learning Platform (lp) API
+  - name: OAuth 2 Application Registration
+  - name: Standard Support
+- id: brightspace-business
+  name: Brightspace for Business
+  type: enterprise
+  description: >-
+    Corporate / workforce learning edition of Brightspace for employee training,
+    customer education, and extended enterprise, with the same Valence API
+    surface. Priced per contract by learner volume and modules.
+  entries:
+  - label: Business Subscription
+    name: business_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Valence API Access
+  - name: Extended Enterprise Features
+- id: brightspace-data-hub
+  name: Brightspace Data Sets / Data Hub Add-On
+  type: enterprise
+  description: >-
+    Advanced institutional data and analytics package exposing bulk Brightspace
+    Data Sets and the Data Export Framework through the Data Hub API. Availability
+    and any additional licensing depend on the institution's edition and contract.
+  entries:
+  - label: Data Hub Add-On
+    name: data_hub_addon
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (edition-dependent)
+    userMultiplied: false
+  elements:
+  - name: Brightspace Data Sets
+  - name: Data Export Framework
+  - name: Advanced Data Sets
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,131 @@
+aid: brightspace
+name: D2L Brightspace
+review:
+  question: Does Brightspace expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Brightspace's public developer surface -
+    the Valence Learning Framework API - is entirely request/response REST over
+    HTTPS under https://{host}/d2l/api/. There is no documented server-push
+    transport (WebSocket or Server-Sent Events) on the Valence API to model.
+    Bulk and near-real-time data movement is handled instead by the Data Hub /
+    Data Export Framework, which produces asynchronous export jobs (CSV/ZIP
+    files) and Brightspace Data Sets extracts that clients poll for and
+    download - a file-based batch mechanism, not a streaming transport.
+findings:
+  summary: |
+    D2L Brightspace does not publish a documented public WebSocket API. Its
+    public API is the Valence Learning Framework API, a versioned REST API
+    served from each institution's own Brightspace host under
+    https://{host}/d2l/api/. Routes are split across two product components -
+    "lp" (Learning Platform: users, roles, enrollments, org units, Data Hub)
+    and "le" (Learning Environment: content, grades, assignments/dropbox,
+    quizzes, discussions, calendar, news, learning outcomes) - each
+    independently versioned (for example lp 1.x and le 1.x). Authentication
+    uses OAuth 2 bearer tokens issued by the D2L auth service via the
+    authorization code grant; the legacy ID-Key (app-id/user-id signed URL)
+    scheme is deprecated. Every documented route is request/response HTTPS
+    REST. No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented anywhere in the Valence reference. Large-scale data
+    access is provided through the Data Hub / Data Export Framework as
+    asynchronous file exports, not a push stream.
+  openSource: |
+    The Valence API itself is a proprietary capability of the licensed
+    Brightspace platform, not an open-source server. D2L does publish
+    open-source client tooling and examples on GitHub (github.com/Brightspace),
+    including SDKs and a Data Hub client example, but the LMS and its API
+    implementation are commercial.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{host}/d2l/api
+      documented: true
+      note: Valence Learning Framework API. lp (Learning Platform) and le (Learning Environment) components, each independently versioned.
+    - protocol: Batch Export
+      scheme: https
+      documented: true
+      note: Data Hub / Data Export Framework and Brightspace Data Sets produce asynchronous CSV/ZIP exports the client polls for and downloads. File-based batch, not server push.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Valence API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://{host}/d2l/api/lp/(version)/users/whoami
+    - GET    https://{host}/d2l/api/lp/(version)/users/
+    - POST   https://{host}/d2l/api/lp/(version)/users/
+    - GET    https://{host}/d2l/api/lp/(version)/users/(userId)
+    - PUT    https://{host}/d2l/api/lp/(version)/users/(userId)
+    - DELETE https://{host}/d2l/api/lp/(version)/users/(userId)
+    - GET    https://{host}/d2l/api/lp/(version)/enrollments/orgUnits/(orgUnitId)/users/
+    - GET    https://{host}/d2l/api/lp/(version)/enrollments/users/(userId)/orgUnits/
+    - POST   https://{host}/d2l/api/lp/(version)/enrollments/
+    - DELETE https://{host}/d2l/api/lp/(version)/enrollments/orgUnits/(orgUnitId)/users/(userId)
+    - GET    https://{host}/d2l/api/lp/(version)/orgstructure/
+    - GET    https://{host}/d2l/api/lp/(version)/orgstructure/(orgUnitId)
+    - GET    https://{host}/d2l/api/lp/(version)/orgstructure/(orgUnitId)/children/
+    - GET    https://{host}/d2l/api/lp/(version)/organization/info
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/content/root/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/content/modules/(moduleId)
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/content/topics/(topicId)
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/grades/
+    - POST   https://{host}/d2l/api/le/(version)/(orgUnitId)/grades/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/grades/(gradeObjectId)/values/(userId)
+    - PUT    https://{host}/d2l/api/le/(version)/(orgUnitId)/grades/(gradeObjectId)/values/(userId)
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/grades/final/values/(userId)
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/dropbox/folders/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/dropbox/folders/(folderId)/submissions/
+    - POST   https://{host}/d2l/api/le/(version)/(orgUnitId)/dropbox/folders/(folderId)/feedback/(entityType)/(entityId)
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/quizzes/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/quizzes/(quizId)/attempts/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/discussions/forums/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/discussions/forums/(forumId)/topics/(topicId)/posts/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/calendar/events/
+    - POST   https://{host}/d2l/api/le/(version)/(orgUnitId)/calendar/event/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/news/
+    - GET    https://{host}/d2l/api/le/(version)/lo/outcomeSets/
+    - GET    https://{host}/d2l/api/le/(version)/(orgUnitId)/lo/alignments/
+    - GET    https://{host}/d2l/api/lp/(version)/dataExport/list
+    - POST   https://{host}/d2l/api/lp/(version)/dataExport/create
+    - GET    https://{host}/d2l/api/lp/(version)/dataExport/jobs
+    - GET    https://{host}/d2l/api/lp/(version)/dataExport/download/(exportJobId)
+    - GET    https://{host}/d2l/api/lp/(version)/datasets/bds
+sources:
+  - url: https://docs.valence.desire2learn.com/reference.html
+    type: APIReference
+    note: Top-level Valence API reference; all resources are HTTPS REST. No WebSocket mentioned.
+  - url: https://docs.valence.desire2learn.com/basic/apicall.html
+    type: Documentation
+    note: Calling conventions - route form https://{host}/d2l/api/{component}/{version}/{path}, components lp and le.
+  - url: https://docs.valence.desire2learn.com/basic/oauth2.html
+    type: Documentation
+    note: OAuth 2 authorization code grant; legacy ID-Key auth deprecated.
+  - url: https://docs.valence.desire2learn.com/res/user.html
+    type: APIReference
+    note: Users and roles routes under lp.
+  - url: https://docs.valence.desire2learn.com/res/enroll.html
+    type: APIReference
+    note: Enrollment routes under lp.
+  - url: https://docs.valence.desire2learn.com/res/grade.html
+    type: APIReference
+    note: Grades routes under le.
+  - url: https://docs.valence.desire2learn.com/res/dropbox.html
+    type: APIReference
+    note: Assignments (dropbox) routes under le.
+  - url: https://docs.valence.desire2learn.com/res/dataExport.html
+    type: APIReference
+    note: Data Hub / Data Export Framework - asynchronous file exports, not a stream.
+  - url: https://github.com/Brightspace
+    type: SourceCode
+    note: D2L open-source client tooling and Data Hub client example. The LMS/API implementation is proprietary.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on the Valence API, and no server-push
+    transport (WebSocket or SSE) is documented, so no AsyncAPI document was
+    created. Brightspace's public API is request/response REST; near-real-time
+    and bulk data movement is handled by the Data Hub / Data Export Framework as
+    asynchronous file exports, which carry no streaming protocol to model.

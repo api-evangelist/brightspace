@@ -1,0 +1,302 @@
+aid: brightspace
+url: https://raw.githubusercontent.com/api-evangelist/brightspace/refs/heads/main/apis.yml
+name: D2L Brightspace
+kind: company
+description: >-
+  D2L Brightspace is an enterprise learning management system (LMS) used by
+  higher education, K-12, and corporate organizations. Its public REST API is
+  the Valence Learning Framework API, exposed under https://{host}/d2l/api/ and
+  split into two product components - "lp" (Learning Platform - users, roles,
+  enrollments, org units, data hub) and "le" (Learning Environment - content,
+  grades, assignments/dropbox, quizzes, discussions, calendar, news, learning
+  outcomes). Routes are versioned per component (for example lp 1.x and le 1.x)
+  and authenticated with OAuth 2 bearer tokens issued by the D2L auth service;
+  the older ID-Key (app-id/user-id) scheme is deprecated. D2L is the vendor;
+  Valence is the historical name of the API framework.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- LMS
+- Learning Management System
+- EdTech
+- Education
+- Valence
+- D2L
+- Brightspace
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: brightspace:brightspace-users-api
+  name: Brightspace Users API
+  tags:
+  - Users
+  - Roles
+  - Learning Platform
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/user.html
+  baseURL: https://{host}/d2l/api/lp
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/user.html
+    type: APIReference
+  - url: https://docs.valence.desire2learn.com/basic/apicall.html
+    type: Documentation
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Manage user accounts on the Learning Platform - retrieve the current
+    caller (whoami), list and search users, create, update, and delete users, manage
+    legal/preferred names, activation status, pronouns, and passwords, and read the
+    role catalog.
+- aid: brightspace:brightspace-enrollments-api
+  name: Brightspace Enrollments API
+  tags:
+  - Enrollments
+  - Membership
+  - Learning Platform
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/enroll.html
+  baseURL: https://{host}/d2l/api/lp
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/enroll.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Enroll and unenroll users in org units, list the users enrolled in a
+    course or department, list the org units a user belongs to, read the caller's own
+    enrollments, and perform batch enrollment operations.
+- aid: brightspace:brightspace-org-units-api
+  name: Brightspace Org Units API
+  tags:
+  - Org Units
+  - Courses
+  - Departments
+  - Semesters
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/orgunit.html
+  baseURL: https://{host}/d2l/api/lp
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/orgunit.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Read and manage the organization structure - org units and their
+    parent/child/ancestor/descendant relationships, org unit types, course offerings,
+    departments and semesters, the recycle bin, and top-level organization info.
+- aid: brightspace:brightspace-content-api
+  name: Brightspace Content API
+  tags:
+  - Content
+  - Modules
+  - Topics
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/content.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/content.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Build and read course content - the root table of contents, modules and
+    their structure, topics and topic files, and per-user access information within a
+    course offering.
+- aid: brightspace:brightspace-grades-api
+  name: Brightspace Grades API
+  tags:
+  - Grades
+  - Gradebook
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/grade.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/grade.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Read and write the course gradebook - grade objects, grade values per
+    user (including my grades), final calculated grades, grade categories, grade
+    schemes, and grade exemptions.
+- aid: brightspace:brightspace-assignments-api
+  name: Brightspace Assignments (Dropbox) API
+  tags:
+  - Assignments
+  - Dropbox
+  - Submissions
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/dropbox.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/dropbox.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Manage assignment (Dropbox) folders and categories, read and create
+    learner submissions, download submitted files, and post instructor feedback and
+    attachments. Assignments are Brightspace's assignment/submission tool.
+- aid: brightspace:brightspace-quizzes-api
+  name: Brightspace Quizzes API
+  tags:
+  - Quizzes
+  - Assessments
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/quiz.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/quiz.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Create and read quizzes, list quiz attempts and questions, manage quiz
+    categories, and configure special access rules per learner within a course offering.
+- aid: brightspace:brightspace-discussions-api
+  name: Brightspace Discussions API
+  tags:
+  - Discussions
+  - Forums
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/discuss.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/discuss.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Manage discussion forums, topics, and posts, including replies, ratings,
+    flags, read status, approval, and post attachments within a course offering.
+- aid: brightspace:brightspace-calendar-api
+  name: Brightspace Calendar API
+  tags:
+  - Calendar
+  - Events
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/calendar.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/calendar.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Create, read, update, and delete calendar events for a course offering,
+    list a caller's events and event occurrences, and manage event presenters.
+- aid: brightspace:brightspace-news-api
+  name: Brightspace News (Announcements) API
+  tags:
+  - News
+  - Announcements
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/news.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/news.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Create, read, update, publish, dismiss, and delete news (announcement)
+    items in a course offering, manage attachments, and configure cross-org-unit
+    sharing rules.
+- aid: brightspace:brightspace-learning-outcomes-api
+  name: Brightspace Learning Outcomes API
+  tags:
+  - Learning Outcomes
+  - Competencies
+  - Learning Environment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/outcomes.html
+  baseURL: https://{host}/d2l/api/le
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/outcomes.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Manage learning outcome sets and outcomes at the organization and org
+    unit level, bulk import and export outcomes, and read and create outcome alignments
+    against course activities.
+- aid: brightspace:brightspace-data-hub-api
+  name: Brightspace Data Hub API
+  tags:
+  - Data Hub
+  - Data Sets
+  - Analytics
+  - Learning Platform
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.valence.desire2learn.com/res/dataExport.html
+  baseURL: https://{host}/d2l/api/lp
+  properties:
+  - url: https://docs.valence.desire2learn.com/res/dataExport.html
+    type: APIReference
+  - url: openapi/brightspace-openapi.yml
+    type: OpenAPI
+  - url: collections/brightspace.postman_collection.json
+    type: PostmanCollection
+  - url: collections/brightspace.opencollection.json
+    type: OpenCollection
+  description: Discover and export bulk institutional data through the Data Hub and Data
+    Export Framework - list available data sets, create and monitor export jobs,
+    download the resulting CSV/ZIP files, and enumerate Brightspace Data Sets extracts.
+common:
+- type: GitHubOrganization
+  url: https://github.com/Brightspace
+- type: LinkedIn
+  url: https://www.linkedin.com/company/d2l
+- type: Website
+  url: https://www.d2l.com
+- type: Documentation
+  url: https://docs.valence.desire2learn.com
+- type: Plans
+  url: plans/brightspace-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/brightspace-rate-limits.yml
+- type: FinOps
+  url: finops/brightspace-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

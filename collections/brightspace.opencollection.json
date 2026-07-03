@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence API",
+    "version": "1.0",
+    "description": "The Valence Learning Framework API is the public REST API for the D2L Brightspace LMS, served from an institution's own host under https://{host}/d2l/api/. It splits into two product components: lp (Learning Platform) and le (Learning Environment). Each is independently versioned (for example lp/1.53, le/1.92) and varies per instance. Authentication uses OAuth 2 bearer tokens issued by the D2L auth service; the legacy ID-Key scheme is deprecated. Replace host, the version segments, orgUnitId, and userId with values for your instance."
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Users", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get current user context (whoami).", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/users/whoami" },
+          "docs": "Retrieves the identity the current access token is acting as."
+        },
+        {
+          "info": { "name": "List or search users.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/lp/1.53/users/",
+            "params": [
+              { "name": "orgDefinedId", "value": "", "type": "query", "description": "Filter by org-defined id." },
+              { "name": "bookmark", "value": "", "type": "query", "description": "Paging bookmark." }
+            ]
+          },
+          "docs": "Retrieves a paged list of users, optionally filtered."
+        },
+        {
+          "info": { "name": "Create a user.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{host}}/d2l/api/lp/1.53/users/",
+            "body": { "type": "json", "data": "{\n  \"OrgDefinedId\": \"stu-001\",\n  \"FirstName\": \"Jane\",\n  \"LastName\": \"Doe\",\n  \"ExternalEmail\": \"jane.doe@example.edu\",\n  \"UserName\": \"jdoe\",\n  \"RoleId\": 110,\n  \"IsActive\": true,\n  \"SendCreationEmail\": false\n}" }
+          },
+          "docs": "Creates a new user account."
+        },
+        {
+          "info": { "name": "Get a user.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/lp/1.53/users/:userId",
+            "params": [
+              { "name": "userId", "value": "", "type": "path", "description": "The user identifier." }
+            ]
+          },
+          "docs": "Retrieves a single user by identifier."
+        },
+        {
+          "info": { "name": "List roles.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/roles/" },
+          "docs": "Retrieves the roles defined on the organization."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Enrollments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List users enrolled in an org unit.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/lp/1.53/enrollments/orgUnits/:orgUnitId/users/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the users enrolled in an org unit."
+        },
+        {
+          "info": { "name": "List the caller's enrollments.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/enrollments/myenrollments/" },
+          "docs": "Retrieves the current user's own enrollments."
+        },
+        {
+          "info": { "name": "Enroll a user.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{host}}/d2l/api/lp/1.53/enrollments/",
+            "body": { "type": "json", "data": "{\n  \"OrgUnitId\": 6606,\n  \"UserId\": 0,\n  \"RoleId\": 110\n}" }
+          },
+          "docs": "Enrolls a user in an org unit with a role."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Org Units", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List org units.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/orgstructure/" },
+          "docs": "Retrieves a paged list of org units."
+        },
+        {
+          "info": { "name": "Get organization info.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/organization/info" },
+          "docs": "Retrieves top-level organization information."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Content", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get root content modules.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/content/root/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the root modules (table of contents) for a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Grades", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List grade objects.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/grades/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the grade objects in a course gradebook."
+        },
+        {
+          "info": { "name": "Get a user's final grade.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/grades/final/values/:userId",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." },
+              { "name": "userId", "value": "", "type": "path", "description": "The user identifier." }
+            ]
+          },
+          "docs": "Retrieves a user's final calculated/adjusted grade."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Assignments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List assignment folders.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/dropbox/folders/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the assignment (dropbox) folders in a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Quizzes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List quizzes.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/quizzes/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the quizzes in a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Discussions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List discussion forums.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/discussions/forums/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the discussion forums in a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Calendar", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List calendar events.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/calendar/events/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the calendar events for a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "News", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List news items.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://{{host}}/d2l/api/le/1.92/:orgUnitId/news/",
+            "params": [
+              { "name": "orgUnitId", "value": "", "type": "path", "description": "The course org unit identifier." }
+            ]
+          },
+          "docs": "Retrieves the news (announcement) items in a course."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Learning Outcomes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List organization outcome sets.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/le/1.92/lo/outcomeSets/" },
+          "docs": "Retrieves the organization-level learning outcome sets."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Data Hub", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List available data sets.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/dataExport/list" },
+          "docs": "Lists the data sets available through the Data Export Framework."
+        },
+        {
+          "info": { "name": "Create an export job.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://{{host}}/d2l/api/lp/1.53/dataExport/create",
+            "body": { "type": "json", "data": "{\n  \"DataSetId\": \"\",\n  \"Filters\": []\n}" }
+          },
+          "docs": "Creates an export job for a requested data set."
+        },
+        {
+          "info": { "name": "List Brightspace Data Sets.", "type": "http" },
+          "http": { "method": "GET", "url": "https://{{host}}/d2l/api/lp/1.53/datasets/bds" },
+          "docs": "Retrieves the Brightspace Data Sets schemas and extracts."
+        }
+      ]
+    }
+  ]
+}

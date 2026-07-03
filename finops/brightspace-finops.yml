@@ -1,0 +1,86 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: D2L Brightspace
+providerId: brightspace
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- LMS
+- Learning Management System
+- EdTech
+- Education
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of D2L Brightspace spend. Brightspace is licensed to institutions
+  under an annual enterprise subscription rather than metered API usage, so the
+  Valence Learning Framework API carries no direct per-call cost - it is a
+  capability included with the platform license. The dominant cost drivers are
+  the institutional subscription itself (sized by FTE / enrolled learners and
+  edition), optional add-on modules such as Brightspace Data Sets / Data Hub and
+  analytics packages, and implementation, migration, and integration services.
+  For teams building on the API, the internal cost is primarily engineering and
+  the compute/storage used to run and operate integrations and any downstream
+  data warehouse fed by Data Hub exports, not a usage invoice from D2L.
+notes: >-
+  D2L does not publish public rate cards; all pricing is contract-based. There
+  is no usage-metered API billing to allocate, so FinOps effort centers on
+  license/edition selection, add-on module ROI, and controlling the internal
+  engineering and infrastructure cost of integrations. Reconcile actual contract
+  terms with D2L.
+sources:
+- https://www.d2l.com/pricing/
+- https://www.d2l.com
+- https://docs.valence.desire2learn.com/res/dataExport.html
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: D2L
+serviceCategory: Education Technology and Learning Management
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+meters:
+- name: platform_subscription
+  description: Annual Brightspace institutional subscription, sized by FTE / enrolled learners and edition. Not API-metered.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - institution
+  - edition
+- name: data_hub_addon
+  description: Optional Brightspace Data Sets / Data Hub licensing for bulk institutional data and analytics.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - institution
+- name: integration_compute
+  description: Internal compute and storage cost of running Valence API integrations and any data warehouse fed by Data Hub exports (no D2L invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - integration
+  - environment
+principles:
+- name: Visibility
+  description: Track the institutional subscription and any Data Hub / analytics add-ons as fixed annual line items; monitor internal engineering and infrastructure spend for integrations separately since the API itself is not metered.
+- name: Allocation
+  description: Attribute the Brightspace subscription and add-ons to the institution or business unit, and map integration/warehouse infrastructure costs to the teams that own each integration.
+- name: Optimization
+  description: Right-size the edition and add-on modules to actual need; use Data Hub bulk exports instead of chatty REST polling to reduce integration compute; retire unused API applications and scheduled jobs.
+- name: Accountability
+  description: Assign an owner for the D2L contract renewal and for each API integration; review add-on module utilization and integration infrastructure cost against value delivered each cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
