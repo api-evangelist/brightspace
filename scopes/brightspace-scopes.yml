@@ -1,0 +1,37 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/brightspace-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/brightspace-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.brightspace.com/oauth2/auth
+    tokenUrl: https://auth.brightspace.com/core/connect/token
+  description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service.
+    Scopes take the form group:resource:action (for example users:userdata:read).
+scopes:
+- scope: core:*:*
+  description: Full access consistent with the registered application
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/brightspace-openapi.yml
+- scope: datahub:dataexports:read
+  description: Read Data Hub exports
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/brightspace-openapi.yml
+- scope: enrollment:orgunit:read
+  description: Read enrollments
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/brightspace-openapi.yml
+- scope: users:userdata:read
+  description: Read user data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/brightspace-openapi.yml

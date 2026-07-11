@@ -283,6 +283,8 @@ apis:
     Export Framework - list available data sets, create and monitor export jobs,
     download the resulting CSV/ZIP files, and enumerate Brightspace Data Sets extracts.
 common:
+- type: OAuthScopes
+  url: scopes/brightspace-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/Brightspace
 - type: LinkedIn
@@ -297,6 +299,8 @@ common:
   url: rate-limits/brightspace-rate-limits.yml
 - type: FinOps
   url: finops/brightspace-finops.yml
+- url: https://www.d2l.com/blog/all/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
