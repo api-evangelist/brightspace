@@ -283,6 +283,10 @@ apis:
     Export Framework - list available data sets, create and monitor export jobs,
     download the resulting CSV/ZIP files, and enumerate Brightspace Data Sets extracts.
 common:
+- type: DomainSecurity
+  url: security/brightspace-domain-security.yml
+- type: Authentication
+  url: authentication/brightspace-authentication.yml
 - type: OAuthScopes
   url: scopes/brightspace-scopes.yml
 - type: GitHubOrganization
