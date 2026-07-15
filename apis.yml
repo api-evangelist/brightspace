@@ -283,6 +283,8 @@ apis:
     Export Framework - list available data sets, create and monitor export jobs,
     download the resulting CSV/ZIP files, and enumerate Brightspace Data Sets extracts.
 common:
+- type: AgenticAccess
+  url: agentic-access/brightspace-agentic-access.yml
 - type: DomainSecurity
   url: security/brightspace-domain-security.yml
 - type: Authentication
