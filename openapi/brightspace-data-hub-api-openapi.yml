@@ -1,0 +1,189 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Data Hub API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Data Hub
+  description: Data Export Framework and Brightspace Data Sets.
+paths:
+  /lp/1.53/dataExport/list:
+    get:
+      operationId: listDataSets
+      tags:
+      - Data Hub
+      summary: List available data sets
+      description: Retrieves a list of the data sets available to export through the Data Export Framework.
+      responses:
+        '200':
+          description: A list of data sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSetData'
+  /lp/1.53/dataExport/create:
+    post:
+      operationId: createDataExport
+      tags:
+      - Data Hub
+      summary: Create an export job
+      description: Creates an export job for a requested data set with optional filter parameters.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportJobData'
+      responses:
+        '200':
+          description: The created export job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobData'
+  /lp/1.53/dataExport/jobs:
+    get:
+      operationId: listDataExportJobs
+      tags:
+      - Data Hub
+      summary: List export jobs
+      description: Lists the export jobs previously submitted by the caller.
+      responses:
+        '200':
+          description: A list of export jobs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportJobData'
+  /lp/1.53/dataExport/download/{exportJobId}:
+    get:
+      operationId: downloadDataExport
+      tags:
+      - Data Hub
+      summary: Download an export job result
+      description: Downloads the ZIP file (containing a CSV) produced by a completed export job.
+      parameters:
+      - name: exportJobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The export ZIP file.
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+  /lp/1.53/datasets/bds:
+    get:
+      operationId: listBrightspaceDataSets
+      tags:
+      - Data Hub
+      summary: List Brightspace Data Sets
+      description: Retrieves the list of Brightspace Data Sets schemas and their available extracts.
+      responses:
+        '200':
+          description: A list of Brightspace Data Sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BrightspaceDataSet'
+components:
+  schemas:
+    ExportJobData:
+      type: object
+      properties:
+        ExportJobId:
+          type: string
+        DataSetId:
+          type: string
+        Name:
+          type: string
+        Status:
+          type: integer
+          description: Export job status (Queued, Processing, Complete, Error, Deleted).
+        SubmitDate:
+          type: string
+          format: date-time
+    CreateExportJobData:
+      type: object
+      properties:
+        DataSetId:
+          type: string
+        Filters:
+          type: array
+          items:
+            type: object
+            properties:
+              Name:
+                type: string
+              Value:
+                type: string
+    DataSetData:
+      type: object
+      properties:
+        DataSetId:
+          type: string
+        Name:
+          type: string
+        Description:
+          type: string
+        Category:
+          type: string
+    BrightspaceDataSet:
+      type: object
+      properties:
+        SchemaId:
+          type: string
+        Name:
+          type: string
+        PluginId:
+          type: string
+        Extracts:
+          type: array
+          items:
+            type: object
+            properties:
+              ExtractId:
+                type: string
+              CreatedDate:
+                type: string
+                format: date-time
+              DownloadLink:
+                type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

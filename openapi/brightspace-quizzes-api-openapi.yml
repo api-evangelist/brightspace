@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Quizzes API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Quizzes
+  description: Quizzes, attempts, questions, and special access.
+paths:
+  /le/1.92/{orgUnitId}/quizzes/:
+    get:
+      operationId: listQuizzes
+      tags:
+      - Quizzes
+      summary: List quizzes
+      description: Retrieves a paged list of quizzes in a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      - name: bookmark
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paged list of quizzes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizPagedResultSet'
+    post:
+      operationId: createQuiz
+      tags:
+      - Quizzes
+      summary: Create a quiz
+      description: Creates a new quiz in a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quiz'
+      responses:
+        '200':
+          description: The created quiz.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quiz'
+  /le/1.92/{orgUnitId}/quizzes/{quizId}/attempts/:
+    get:
+      operationId: listQuizAttempts
+      tags:
+      - Quizzes
+      summary: List quiz attempts
+      description: Retrieves the attempts made against a quiz.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      - $ref: '#/components/parameters/QuizId'
+      responses:
+        '200':
+          description: A list of quiz attempts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuizAttempt'
+components:
+  parameters:
+    QuizId:
+      name: quizId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
+    QuizPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Quiz'
+    QuizAttempt:
+      type: object
+      properties:
+        AttemptId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        IsGraded:
+          type: boolean
+        Score:
+          type: number
+        TimeCompleted:
+          type: string
+          format: date-time
+    Quiz:
+      type: object
+      properties:
+        QuizId:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        IsActive:
+          type: boolean
+        ShuffleQuiz:
+          type: boolean
+        GradeItemId:
+          type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

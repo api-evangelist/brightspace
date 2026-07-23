@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Discussions API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Discussions
+  description: Discussion forums, topics, and posts.
+paths:
+  /le/1.92/{orgUnitId}/discussions/forums/:
+    get:
+      operationId: listDiscussionForums
+      tags:
+      - Discussions
+      summary: List discussion forums
+      description: Retrieves the discussion forums in a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      responses:
+        '200':
+          description: A list of forums.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Forum'
+    post:
+      operationId: createDiscussionForum
+      tags:
+      - Discussions
+      summary: Create a discussion forum
+      description: Creates a new discussion forum in a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Forum'
+      responses:
+        '200':
+          description: The created forum.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forum'
+  /le/1.92/{orgUnitId}/discussions/forums/{forumId}/topics/{topicId}/posts/:
+    parameters:
+    - $ref: '#/components/parameters/OrgUnitId'
+    - $ref: '#/components/parameters/ForumId'
+    - $ref: '#/components/parameters/TopicId'
+    get:
+      operationId: listDiscussionPosts
+      tags:
+      - Discussions
+      summary: List posts in a discussion topic
+      description: Retrieves the posts in a discussion topic.
+      responses:
+        '200':
+          description: A list of posts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      operationId: createDiscussionPost
+      tags:
+      - Discussions
+      summary: Create a post in a discussion topic
+      description: Creates a new post in a discussion topic.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: The created post.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        PostId:
+          type: integer
+          format: int64
+        Subject:
+          type: string
+        Message:
+          type: object
+          properties:
+            Text:
+              type: string
+            Html:
+              type: string
+        ParentPostId:
+          type: integer
+    Forum:
+      type: object
+      properties:
+        ForumId:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        Description:
+          type: object
+        AllowAnonymousPosts:
+          type: boolean
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    TopicId:
+      name: topicId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ForumId:
+      name: forumId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

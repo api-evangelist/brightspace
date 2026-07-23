@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Learning Outcomes API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Learning Outcomes
+  description: Learning outcome sets, outcomes, and alignments.
+paths:
+  /le/1.92/lo/outcomeSets/:
+    get:
+      operationId: listOutcomeSets
+      tags:
+      - Learning Outcomes
+      summary: List organization outcome sets
+      description: Retrieves the learning outcome sets defined at the organization level.
+      responses:
+        '200':
+          description: A list of outcome sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OutcomeSet'
+    post:
+      operationId: createOutcomeSet
+      tags:
+      - Learning Outcomes
+      summary: Create an organization outcome set
+      description: Creates a new learning outcome set at the organization level.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutcomeSet'
+      responses:
+        '200':
+          description: The created outcome set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutcomeSet'
+  /le/1.92/{orgUnitId}/lo/alignments/:
+    get:
+      operationId: listOutcomeAlignments
+      tags:
+      - Learning Outcomes
+      summary: List outcome alignments for an org unit
+      description: Retrieves the learning outcome alignments within a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      responses:
+        '200':
+          description: A list of alignments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OutcomeAlignment'
+components:
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    OutcomeAlignment:
+      type: object
+      properties:
+        id:
+          type: string
+        outcomeId:
+          type: string
+        activityType:
+          type: string
+        objectId:
+          type: string
+    OutcomeSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        source:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

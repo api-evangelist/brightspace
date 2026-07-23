@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Users API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Users
+  description: User accounts and roles on the Learning Platform.
+paths:
+  /lp/1.53/users/whoami:
+    get:
+      operationId: getWhoAmI
+      tags:
+      - Users
+      summary: Get the current user context
+      description: Retrieves a WhoAmIUser JSON block describing the identity the current access token is acting as.
+      responses:
+        '200':
+          description: The current user context.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhoAmIUser'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /lp/1.53/users/:
+    get:
+      operationId: listUsers
+      tags:
+      - Users
+      summary: List or search users
+      description: Retrieves a paged list of users, optionally filtered by orgDefinedId, userName, externalEmail, or a bookmark for paging.
+      parameters:
+      - name: orgDefinedId
+        in: query
+        schema:
+          type: string
+      - name: userName
+        in: query
+        schema:
+          type: string
+      - name: bookmark
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paged result set of users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPagedResultSet'
+    post:
+      operationId: createUser
+      tags:
+      - Users
+      summary: Create a user
+      description: Creates a new user account from a CreateUserData block.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserData'
+      responses:
+        '200':
+          description: The created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+  /lp/1.53/users/{userId}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUser
+      tags:
+      - Users
+      summary: Get a user
+      description: Retrieves a UserData block for the identified user.
+      responses:
+        '200':
+          description: The requested user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateUser
+      tags:
+      - Users
+      summary: Update a user
+      description: Updates the identified user account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserData'
+      responses:
+        '200':
+          description: The updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+    delete:
+      operationId: deleteUser
+      tags:
+      - Users
+      summary: Delete a user
+      description: Permanently deletes the identified user account.
+      responses:
+        '200':
+          description: The user was deleted.
+  /lp/1.53/roles/:
+    get:
+      operationId: listRoles
+      tags:
+      - Users
+      summary: List roles
+      description: Retrieves the list of all roles defined on the organization that the caller can see.
+      responses:
+        '200':
+          description: A list of roles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+components:
+  schemas:
+    WhoAmIUser:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        UniqueName:
+          type: string
+        ProfileIdentifier:
+          type: string
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
+    CreateUserData:
+      type: object
+      properties:
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        MiddleName:
+          type: string
+        LastName:
+          type: string
+        ExternalEmail:
+          type: string
+        UserName:
+          type: string
+        RoleId:
+          type: integer
+        IsActive:
+          type: boolean
+        SendCreationEmail:
+          type: boolean
+    Role:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        DisplayName:
+          type: string
+        Code:
+          type: string
+    UserData:
+      type: object
+      properties:
+        UserId:
+          type: integer
+          format: int64
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        UserName:
+          type: string
+        ExternalEmail:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
+    UpdateUserData:
+      type: object
+      properties:
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        ExternalEmail:
+          type: string
+        UserName:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
+    UserPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: The access token is missing or invalid.
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

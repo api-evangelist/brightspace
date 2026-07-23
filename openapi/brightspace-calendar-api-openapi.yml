@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Calendar API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Calendar
+  description: Course calendar events.
+paths:
+  /le/1.92/{orgUnitId}/calendar/events/:
+    get:
+      operationId: listCalendarEvents
+      tags:
+      - Calendar
+      summary: List calendar events
+      description: Retrieves the calendar events for a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      responses:
+        '200':
+          description: A list of calendar events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CalendarEvent'
+  /le/1.92/{orgUnitId}/calendar/event/:
+    post:
+      operationId: createCalendarEvent
+      tags:
+      - Calendar
+      summary: Create a calendar event
+      description: Creates a new calendar event in a course offering.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarEvent'
+      responses:
+        '200':
+          description: The created calendar event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+  /le/1.92/{orgUnitId}/calendar/event/{eventId}:
+    parameters:
+    - $ref: '#/components/parameters/OrgUnitId'
+    - $ref: '#/components/parameters/EventId'
+    get:
+      operationId: getCalendarEvent
+      tags:
+      - Calendar
+      summary: Get a calendar event
+      description: Retrieves a single calendar event by its identifier.
+      responses:
+        '200':
+          description: The calendar event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+    delete:
+      operationId: deleteCalendarEvent
+      tags:
+      - Calendar
+      summary: Delete a calendar event
+      description: Deletes a single calendar event.
+      responses:
+        '200':
+          description: The event was deleted.
+components:
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    EventId:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    CalendarEvent:
+      type: object
+      properties:
+        CalendarEventId:
+          type: integer
+          format: int64
+        Title:
+          type: string
+        Description:
+          type: string
+        StartDateTime:
+          type: string
+          format: date-time
+        EndDateTime:
+          type: string
+          format: date-time
+        IsAllDayEvent:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports

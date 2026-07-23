@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: D2L Brightspace Valence Learning Framework Assignments Enrollments API
+  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  version: '1.0'
+  contact:
+    name: D2L Developer Platform
+    url: https://docs.valence.desire2learn.com
+  license:
+    name: D2L Developer Terms
+    url: https://www.d2l.com/legal/
+servers:
+- url: https://{host}/d2l/api
+  description: An institution's Brightspace instance
+  variables:
+    host:
+      default: myschool.brightspace.com
+      description: Your Brightspace instance hostname.
+security:
+- oauth2: []
+tags:
+- name: Enrollments
+  description: Membership of users in org units.
+paths:
+  /lp/1.53/enrollments/orgUnits/{orgUnitId}/users/:
+    get:
+      operationId: listOrgUnitUsers
+      tags:
+      - Enrollments
+      summary: List users enrolled in an org unit
+      description: Retrieves a paged list of the users enrolled in the identified org unit, optionally filtered by roleId.
+      parameters:
+      - $ref: '#/components/parameters/OrgUnitId'
+      - name: roleId
+        in: query
+        schema:
+          type: integer
+      - name: bookmark
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paged list of enrolled users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentPagedResultSet'
+  /lp/1.53/enrollments/users/{userId}/orgUnits/:
+    get:
+      operationId: listUserOrgUnits
+      tags:
+      - Enrollments
+      summary: List org units a user is enrolled in
+      description: Retrieves a paged list of the org units the identified user is enrolled in.
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: bookmark
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paged list of org unit enrollments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentPagedResultSet'
+  /lp/1.53/enrollments/myenrollments/:
+    get:
+      operationId: listMyEnrollments
+      tags:
+      - Enrollments
+      summary: List the caller's enrollments
+      description: Retrieves a paged list of the current user's own enrollments.
+      parameters:
+      - name: bookmark
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The caller's enrollments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentPagedResultSet'
+  /lp/1.53/enrollments/:
+    post:
+      operationId: createEnrollment
+      tags:
+      - Enrollments
+      summary: Enroll a user
+      description: Enrolls a user in an org unit with a specified role.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEnrollmentData'
+      responses:
+        '200':
+          description: The created enrollment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentData'
+  /lp/1.53/enrollments/orgUnits/{orgUnitId}/users/{userId}:
+    parameters:
+    - $ref: '#/components/parameters/OrgUnitId'
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getEnrollment
+      tags:
+      - Enrollments
+      summary: Get a user's enrollment in an org unit
+      description: Retrieves the enrollment record for a user in an org unit.
+      responses:
+        '200':
+          description: The enrollment record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentData'
+    delete:
+      operationId: deleteEnrollment
+      tags:
+      - Enrollments
+      summary: Unenroll a user from an org unit
+      description: Removes the identified user's enrollment from the identified org unit.
+      responses:
+        '200':
+          description: The user was unenrolled.
+components:
+  schemas:
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
+    EnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
+        IsCascading:
+          type: boolean
+    CreateEnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
+    EnrollmentPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentData'
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2 authorization code grant. Tokens are issued by the D2L auth service. Scopes take the form group:resource:action (for example users:userdata:read).
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.brightspace.com/oauth2/auth
+          tokenUrl: https://auth.brightspace.com/core/connect/token
+          scopes:
+            core:*:*: Full access consistent with the registered application
+            users:userdata:read: Read user data
+            enrollment:orgunit:read: Read enrollments
+            datahub:dataexports:read: Read Data Hub exports
