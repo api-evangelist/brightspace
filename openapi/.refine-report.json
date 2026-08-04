@@ -1,0 +1,38 @@
+{
+  "provider": "brightspace",
+  "sources": [
+    "brightspace-assignments-api-openapi.yml",
+    "brightspace-calendar-api-openapi.yml",
+    "brightspace-content-api-openapi.yml",
+    "brightspace-data-hub-api-openapi.yml",
+    "brightspace-discussions-api-openapi.yml",
+    "brightspace-enrollments-api-openapi.yml",
+    "brightspace-grades-api-openapi.yml",
+    "brightspace-learning-outcomes-api-openapi.yml",
+    "brightspace-news-api-openapi.yml",
+    "brightspace-org-units-api-openapi.yml",
+    "brightspace-quizzes-api-openapi.yml",
+    "brightspace-users-api-openapi.yml",
+    "brightspace-versions-api-openapi.yml"
+  ],
+  "outputs": [
+    "brightspace-assignments-api-openapi.yml",
+    "brightspace-calendar-api-openapi.yml",
+    "brightspace-content-api-openapi.yml",
+    "brightspace-data-hub-api-openapi.yml",
+    "brightspace-discussions-api-openapi.yml",
+    "brightspace-enrollments-api-openapi.yml",
+    "brightspace-grades-api-openapi.yml",
+    "brightspace-learning-outcomes-api-openapi.yml",
+    "brightspace-news-api-openapi.yml",
+    "brightspace-org-units-api-openapi.yml",
+    "brightspace-quizzes-api-openapi.yml",
+    "brightspace-users-api-openapi.yml",
+    "brightspace-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
