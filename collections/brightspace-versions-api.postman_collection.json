@@ -1,0 +1,264 @@
+{
+  "item": [
+    {
+      "id": "c71990b2-9483-407c-9e77-7a00ed251995",
+      "name": "Versions",
+      "description": {
+        "content": "Product component version discovery.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53ce8f66-aedd-43aa-b313-74dec82a67c4",
+          "name": "List supported product component versions",
+          "request": {
+            "name": "List supported product component versions",
+            "description": {
+              "content": "Retrieves the collection of supported API product component versions on this instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d7d0330-2bc3-45c5-ad6f-6e50033efb6f",
+              "name": "Supported versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ProductCode\": \"string\",\n    \"LatestVersion\": \"string\",\n    \"SupportedVersions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"ProductCode\": \"string\",\n    \"LatestVersion\": \"string\",\n    \"SupportedVersions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dff1017-6805-4b48-86cb-96ca21b5c28d",
+          "name": "List versions for a product component",
+          "request": {
+            "name": "List versions for a product component",
+            "description": {
+              "content": "Retrieves supported versions for a single product component (for example lp or le).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                ":productCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productCode",
+                  "description": "(Required) The product component code, for example lp or le."
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c55f43e-c362-4783-a2e5-5512ca8a493e",
+              "name": "Supported versions for the product.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ":productCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productCode",
+                      "description": "(Required) The product component code, for example lp or le."
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ProductCode\": \"string\",\n  \"LatestVersion\": \"string\",\n  \"SupportedVersions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a93e403e-ea1b-41c2-b011-965e36c401eb",
+    "name": "D2L Brightspace Valence Learning Framework Assignments Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

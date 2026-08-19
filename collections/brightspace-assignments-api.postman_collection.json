@@ -1,0 +1,626 @@
+{
+  "item": [
+    {
+      "id": "b58ce74a-cc00-4297-bc6a-da0487066731",
+      "name": "Assignments",
+      "description": {
+        "content": "Assignment (Dropbox) folders, submissions, and feedback.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca39212c-1e80-435d-a433-e534d6fa9bca",
+          "name": "List assignment folders",
+          "request": {
+            "name": "List assignment folders",
+            "description": {
+              "content": "Retrieves all the assignment (dropbox) folders in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "dropbox",
+                "folders",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eff6e8f4-6774-425d-9a6f-91754ba0d38a",
+              "name": "A list of assignment folders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "dropbox",
+                    "folders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 7015,\n    \"Name\": \"string\",\n    \"CategoryId\": 4635,\n    \"TotalFiles\": 3234,\n    \"DueDate\": \"1957-08-10T13:51:10.111Z\"\n  },\n  {\n    \"Id\": 8998,\n    \"Name\": \"string\",\n    \"CategoryId\": 6096,\n    \"TotalFiles\": 7435,\n    \"DueDate\": \"1961-08-26T19:35:01.701Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19781355-e09d-4e15-a539-61b0e3be05de",
+          "name": "Create an assignment folder",
+          "request": {
+            "name": "Create an assignment folder",
+            "description": {
+              "content": "Creates a new assignment (dropbox) folder in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "dropbox",
+                "folders",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"CategoryId\": \"<integer>\",\n  \"TotalFiles\": \"<integer>\",\n  \"DueDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a1703e4-683d-4bab-97bb-a33480558063",
+              "name": "The created assignment folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "dropbox",
+                    "folders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"CategoryId\": \"<integer>\",\n  \"TotalFiles\": \"<integer>\",\n  \"DueDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"CategoryId\": \"<integer>\",\n  \"TotalFiles\": \"<integer>\",\n  \"DueDate\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9aa3e7e3-8112-45ee-9259-9d2f405081fb",
+          "name": "List submissions for an assignment folder",
+          "request": {
+            "name": "List submissions for an assignment folder",
+            "description": {
+              "content": "Retrieves the submissions made to an assignment (dropbox) folder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "dropbox",
+                "folders",
+                ":folderId",
+                "submissions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef302cff-4e26-4c61-93a5-e1890db07ed5",
+              "name": "A list of submissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "dropbox",
+                    "folders",
+                    ":folderId",
+                    "submissions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Entity\": {\n      \"EntityId\": 7861,\n      \"EntityType\": \"string\"\n    },\n    \"Submissions\": [\n      {\n        \"Id\": 4774,\n        \"SubmittedBy\": {},\n        \"Comment\": {}\n      },\n      {\n        \"Id\": 322,\n        \"SubmittedBy\": {},\n        \"Comment\": {}\n      }\n    ]\n  },\n  {\n    \"Entity\": {\n      \"EntityId\": 7742,\n      \"EntityType\": \"string\"\n    },\n    \"Submissions\": [\n      {\n        \"Id\": 5360,\n        \"SubmittedBy\": {},\n        \"Comment\": {}\n      },\n      {\n        \"Id\": 9314,\n        \"SubmittedBy\": {},\n        \"Comment\": {}\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81e53148-0c74-497e-98ae-8a11095dd307",
+          "name": "Post feedback on a submission",
+          "request": {
+            "name": "Post feedback on a submission",
+            "description": {
+              "content": "Sets instructor feedback (score, text, published state) for a submission entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "dropbox",
+                "folders",
+                ":folderId",
+                "feedback",
+                ":entityType",
+                ":entityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityType",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "entityId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Score\": \"<number>\",\n  \"Feedback\": {\n    \"Content\": \"<string>\",\n    \"Type\": \"<string>\"\n  },\n  \"IsGraded\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea38793c-f8cf-4a86-aa88-17ada67576cf",
+              "name": "The feedback was set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "dropbox",
+                    "folders",
+                    ":folderId",
+                    "feedback",
+                    ":entityType",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityType",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "entityId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Score\": \"<number>\",\n  \"Feedback\": {\n    \"Content\": \"<string>\",\n    \"Type\": \"<string>\"\n  },\n  \"IsGraded\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa2d1e47-b405-4b0a-a194-63c2f6dff263",
+    "name": "D2L Brightspace Valence Learning Framework Assignments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,557 @@
+{
+  "item": [
+    {
+      "id": "f56fa813-1d46-4878-8318-d3dd30be9f9d",
+      "name": "News",
+      "description": {
+        "content": "News (announcement) items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "255e9c23-9c71-4c70-b1ae-0cda03fb3ecb",
+          "name": "List news items",
+          "request": {
+            "name": "List news items",
+            "description": {
+              "content": "Retrieves the news (announcement) items in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "news",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b2f2a5d-8ae7-4de9-af31-ad022bb224f9",
+              "name": "A list of news items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "news",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 9762,\n    \"Title\": \"string\",\n    \"Body\": {\n      \"Text\": \"string\",\n      \"Html\": \"string\"\n    },\n    \"IsPublished\": false,\n    \"StartDate\": \"1951-06-09T11:46:29.388Z\"\n  },\n  {\n    \"Id\": 2603,\n    \"Title\": \"string\",\n    \"Body\": {\n      \"Text\": \"string\",\n      \"Html\": \"string\"\n    },\n    \"IsPublished\": false,\n    \"StartDate\": \"2013-10-12T14:28:05.095Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c1574f7-d557-4666-96dd-65746f5deaee",
+          "name": "Create a news item",
+          "request": {
+            "name": "Create a news item",
+            "description": {
+              "content": "Creates a new news (announcement) item in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "news",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"Body\": {\n    \"Text\": \"<string>\",\n    \"Html\": \"<string>\"\n  },\n  \"IsPublished\": \"<boolean>\",\n  \"StartDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bd20d58-cd8a-415e-bfde-99970fe53902",
+              "name": "The created news item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "news",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"Body\": {\n    \"Text\": \"<string>\",\n    \"Html\": \"<string>\"\n  },\n  \"IsPublished\": \"<boolean>\",\n  \"StartDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"Body\": {\n    \"Text\": \"<string>\",\n    \"Html\": \"<string>\"\n  },\n  \"IsPublished\": \"<boolean>\",\n  \"StartDate\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e95392d-96e5-4ef3-8d81-59f381e283b6",
+          "name": "Get a news item",
+          "request": {
+            "name": "Get a news item",
+            "description": {
+              "content": "Retrieves a single news item by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "news",
+                ":newsItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "newsItemId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "218a279c-af54-4304-8762-4fc8c878e7db",
+              "name": "The news item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "news",
+                    ":newsItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "newsItemId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"Body\": {\n    \"Text\": \"<string>\",\n    \"Html\": \"<string>\"\n  },\n  \"IsPublished\": \"<boolean>\",\n  \"StartDate\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d900c55b-0ef4-4f95-ab12-b76f4aa92c0f",
+          "name": "Delete a news item",
+          "request": {
+            "name": "Delete a news item",
+            "description": {
+              "content": "Deletes a single news item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "news",
+                ":newsItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "newsItemId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1693aaa-c31e-416b-a4df-5d75b84ea6a6",
+              "name": "The news item was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "news",
+                    ":newsItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "newsItemId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ac9c7a06-5ddf-4dbf-9763-48323da979f4",
+    "name": "D2L Brightspace Valence Learning Framework Assignments News API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

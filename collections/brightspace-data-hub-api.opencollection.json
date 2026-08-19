@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Data Hub API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Hub",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available data sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/dataExport/list"
+          },
+          "docs": "Retrieves a list of the data sets available to export through the Data Export Framework."
+        },
+        {
+          "info": {
+            "name": "Create an export job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/d2l/api/lp/1.53/dataExport/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an export job for a requested data set with optional filter parameters."
+        },
+        {
+          "info": {
+            "name": "List export jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/dataExport/jobs"
+          },
+          "docs": "Lists the export jobs previously submitted by the caller."
+        },
+        {
+          "info": {
+            "name": "Download an export job result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/dataExport/download/:exportJobId",
+            "params": [
+              {
+                "name": "exportJobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Downloads the ZIP file (containing a CSV) produced by a completed export job."
+        },
+        {
+          "info": {
+            "name": "List Brightspace Data Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/datasets/bds"
+          },
+          "docs": "Retrieves the list of Brightspace Data Sets schemas and their available extracts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

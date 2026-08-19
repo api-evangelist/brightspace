@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Content API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get root content modules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/content/root/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the root-level modules (table of contents) for a course offering."
+        },
+        {
+          "info": {
+            "name": "Get a content module",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/content/modules/:moduleId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "moduleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a content module by its identifier."
+        },
+        {
+          "info": {
+            "name": "Get a content topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/content/topics/:topicId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topicId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a content topic by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

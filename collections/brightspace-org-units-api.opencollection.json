@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Org Units API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Org Units",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List org units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/orgstructure/",
+            "params": [
+              {
+                "name": "orgUnitType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookmark",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a paged list of org units in the organization structure, filterable by type and other query parameters."
+        },
+        {
+          "info": {
+            "name": "Get an org unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/orgstructure/:orgUnitId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the properties of the identified org unit."
+        },
+        {
+          "info": {
+            "name": "List an org unit's children",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/orgstructure/:orgUnitId/children/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the child org units of the identified org unit."
+        },
+        {
+          "info": {
+            "name": "Get a course offering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/courses/:orgUnitId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the CourseOffering information for the identified course org unit."
+        },
+        {
+          "info": {
+            "name": "Get organization info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/lp/1.53/organization/info"
+          },
+          "docs": "Retrieves top-level information about the organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Versions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported product component versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/versions/"
+          },
+          "docs": "Retrieves the collection of supported API product component versions on this instance."
+        },
+        {
+          "info": {
+            "name": "List versions for a product component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/versions/:productCode",
+            "params": [
+              {
+                "name": "productCode",
+                "value": "",
+                "type": "path",
+                "description": "The product component code, for example lp or le."
+              }
+            ]
+          },
+          "docs": "Retrieves supported versions for a single product component (for example lp or le)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

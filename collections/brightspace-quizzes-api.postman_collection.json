@@ -1,0 +1,454 @@
+{
+  "item": [
+    {
+      "id": "80bd1895-88ea-4d74-b7af-d565f2fd2dc6",
+      "name": "Quizzes",
+      "description": {
+        "content": "Quizzes, attempts, questions, and special access.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbc9fa1b-1edb-4784-b9b4-d7a0e4986537",
+          "name": "List quizzes",
+          "request": {
+            "name": "List quizzes",
+            "description": {
+              "content": "Retrieves a paged list of quizzes in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "quizzes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bookmark",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95025915-ab0e-42d7-afe3-4c38f62d74ba",
+              "name": "A paged list of quizzes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "quizzes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookmark",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PagingInfo\": {\n    \"Bookmark\": \"string\",\n    \"HasMoreItems\": false\n  },\n  \"Objects\": [\n    {\n      \"QuizId\": 3805,\n      \"Name\": \"string\",\n      \"IsActive\": false,\n      \"ShuffleQuiz\": false,\n      \"GradeItemId\": 8082\n    },\n    {\n      \"QuizId\": 8813,\n      \"Name\": \"string\",\n      \"IsActive\": true,\n      \"ShuffleQuiz\": true,\n      \"GradeItemId\": 7688\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c8905db-43da-463b-9cf8-26d1fbd089c4",
+          "name": "Create a quiz",
+          "request": {
+            "name": "Create a quiz",
+            "description": {
+              "content": "Creates a new quiz in a course offering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "quizzes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"QuizId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"IsActive\": \"<boolean>\",\n  \"ShuffleQuiz\": \"<boolean>\",\n  \"GradeItemId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "525877f3-c34c-4734-8167-395295129891",
+              "name": "The created quiz.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "quizzes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"QuizId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"IsActive\": \"<boolean>\",\n  \"ShuffleQuiz\": \"<boolean>\",\n  \"GradeItemId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"QuizId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"IsActive\": \"<boolean>\",\n  \"ShuffleQuiz\": \"<boolean>\",\n  \"GradeItemId\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5562c50-30b6-4d21-b800-4df7f96572ef",
+          "name": "List quiz attempts",
+          "request": {
+            "name": "List quiz attempts",
+            "description": {
+              "content": "Retrieves the attempts made against a quiz.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "le",
+                "1.92",
+                ":orgUnitId",
+                "quizzes",
+                ":quizId",
+                "attempts",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "quizId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "314fb13e-8519-4fdd-ade5-7e9e3e2558be",
+              "name": "A list of quiz attempts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "le",
+                    "1.92",
+                    ":orgUnitId",
+                    "quizzes",
+                    ":quizId",
+                    "attempts",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "quizId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"AttemptId\": 9053,\n    \"UserId\": 1949,\n    \"IsGraded\": true,\n    \"Score\": 5043.771985793167,\n    \"TimeCompleted\": \"2019-06-29T17:49:14.987Z\"\n  },\n  {\n    \"AttemptId\": 3228,\n    \"UserId\": 9183,\n    \"IsGraded\": false,\n    \"Score\": 8552.260024598358,\n    \"TimeCompleted\": \"2009-08-30T17:10:17.720Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f53774b6-5026-4b96-a5d2-f1f79ce16ffd",
+    "name": "D2L Brightspace Valence Learning Framework Assignments Quizzes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

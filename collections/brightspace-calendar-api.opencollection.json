@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Calendar API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calendar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List calendar events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/calendar/events/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the calendar events for a course offering."
+        },
+        {
+          "info": {
+            "name": "Create a calendar event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/calendar/event/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new calendar event in a course offering."
+        },
+        {
+          "info": {
+            "name": "Get a calendar event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/calendar/event/:eventId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single calendar event by its identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a calendar event",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/calendar/event/:eventId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a single calendar event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

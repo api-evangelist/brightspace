@@ -1,0 +1,618 @@
+{
+  "item": [
+    {
+      "id": "347f0776-a80e-4b1e-8566-61e9126727c1",
+      "name": "Org Units",
+      "description": {
+        "content": "Organization structure, course offerings, departments, and semesters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3a185ed-15a8-44bd-af2e-6611ae05cb5f",
+          "name": "List org units",
+          "request": {
+            "name": "List org units",
+            "description": {
+              "content": "Retrieves a paged list of org units in the organization structure, filterable by type and other query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "orgstructure",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orgUnitType",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookmark",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecbad0c0-104d-4c27-8a04-762b6c750499",
+              "name": "A paged list of org units.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "orgstructure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUnitType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bookmark",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PagingInfo\": {\n    \"Bookmark\": \"string\",\n    \"HasMoreItems\": false\n  },\n  \"Items\": [\n    {\n      \"Identifier\": \"string\",\n      \"Name\": \"string\",\n      \"Code\": \"string\",\n      \"Type\": {\n        \"Id\": 4036,\n        \"Code\": \"string\",\n        \"Name\": \"string\"\n      }\n    },\n    {\n      \"Identifier\": \"string\",\n      \"Name\": \"string\",\n      \"Code\": \"string\",\n      \"Type\": {\n        \"Id\": 3113,\n        \"Code\": \"string\",\n        \"Name\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0429ef23-d3f6-40cd-850c-ef0e38989d68",
+          "name": "Get an org unit",
+          "request": {
+            "name": "Get an org unit",
+            "description": {
+              "content": "Retrieves the properties of the identified org unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "orgstructure",
+                ":orgUnitId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "819029c1-5323-400d-a4be-78e015dd1a1f",
+              "name": "The requested org unit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "orgstructure",
+                    ":orgUnitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Identifier\": \"string\",\n  \"Name\": \"string\",\n  \"Code\": \"string\",\n  \"Type\": {\n    \"Id\": 862,\n    \"Code\": \"string\",\n    \"Name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a315a9f-5678-4323-a044-2d80e805394f",
+          "name": "List an org unit's children",
+          "request": {
+            "name": "List an org unit's children",
+            "description": {
+              "content": "Retrieves the child org units of the identified org unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "orgstructure",
+                ":orgUnitId",
+                "children",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "caea92c0-b448-46f6-8664-8b849a877a60",
+              "name": "A list of child org units.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "orgstructure",
+                    ":orgUnitId",
+                    "children",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Identifier\": \"string\",\n    \"Name\": \"string\",\n    \"Code\": \"string\",\n    \"Type\": {\n      \"Id\": 4847,\n      \"Code\": \"string\",\n      \"Name\": \"string\"\n    }\n  },\n  {\n    \"Identifier\": \"string\",\n    \"Name\": \"string\",\n    \"Code\": \"string\",\n    \"Type\": {\n      \"Id\": 1342,\n      \"Code\": \"string\",\n      \"Name\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd137064-dc93-4409-a5b3-6dad354faa84",
+          "name": "Get a course offering",
+          "request": {
+            "name": "Get a course offering",
+            "description": {
+              "content": "Retrieves the CourseOffering information for the identified course org unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "courses",
+                ":orgUnitId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "orgUnitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97d807cd-4f7f-492f-bea3-5510774fe0c2",
+              "name": "The course offering.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "courses",
+                    ":orgUnitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "orgUnitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Identifier\": \"string\",\n  \"Name\": \"string\",\n  \"Code\": \"string\",\n  \"IsActive\": false,\n  \"StartDate\": \"1960-01-14T11:37:00.807Z\",\n  \"EndDate\": \"1988-09-23T16:03:32.419Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a60bfd3f-2e82-4d7e-a426-9b44acd0f786",
+          "name": "Get organization info",
+          "request": {
+            "name": "Get organization info",
+            "description": {
+              "content": "Retrieves top-level information about the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "organization",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "795abedb-9479-4b2d-b8f2-54331c17f53e",
+              "name": "Organization info.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "organization",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Identifier\": \"string\",\n  \"Name\": \"string\",\n  \"TimeZone\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6aa73bf3-3560-4529-988f-beae83412334",
+    "name": "D2L Brightspace Valence Learning Framework Assignments Org Units API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

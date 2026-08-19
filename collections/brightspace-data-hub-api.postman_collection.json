@@ -1,0 +1,589 @@
+{
+  "item": [
+    {
+      "id": "44928346-1bdb-4159-8813-4fda667c6e7c",
+      "name": "Data Hub",
+      "description": {
+        "content": "Data Export Framework and Brightspace Data Sets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcc11a22-5b25-42e8-b9fc-4e496c3c5aaf",
+          "name": "List available data sets",
+          "request": {
+            "name": "List available data sets",
+            "description": {
+              "content": "Retrieves a list of the data sets available to export through the Data Export Framework.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "dataExport",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "003466f2-d984-4dbb-b8e5-a501b3f26506",
+              "name": "A list of data sets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "dataExport",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"DataSetId\": \"string\",\n    \"Name\": \"string\",\n    \"Description\": \"string\",\n    \"Category\": \"string\"\n  },\n  {\n    \"DataSetId\": \"string\",\n    \"Name\": \"string\",\n    \"Description\": \"string\",\n    \"Category\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf75f555-fa15-456e-8c7b-8360e189edc4",
+          "name": "Create an export job",
+          "request": {
+            "name": "Create an export job",
+            "description": {
+              "content": "Creates an export job for a requested data set with optional filter parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "dataExport",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DataSetId\": \"<string>\",\n  \"Filters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f618ce48-69c3-4962-87aa-61821580af99",
+              "name": "The created export job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "dataExport",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DataSetId\": \"<string>\",\n  \"Filters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ExportJobId\": \"string\",\n  \"DataSetId\": \"string\",\n  \"Name\": \"string\",\n  \"Status\": 8350,\n  \"SubmitDate\": \"1951-05-29T12:29:51.975Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e173f2a-4207-4d12-8496-261154f7fd6f",
+          "name": "List export jobs",
+          "request": {
+            "name": "List export jobs",
+            "description": {
+              "content": "Lists the export jobs previously submitted by the caller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "dataExport",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f238be0c-bdcc-4899-b659-11e97b8db8d3",
+              "name": "A list of export jobs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "dataExport",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ExportJobId\": \"string\",\n    \"DataSetId\": \"string\",\n    \"Name\": \"string\",\n    \"Status\": 1364,\n    \"SubmitDate\": \"2015-11-14T00:53:44.085Z\"\n  },\n  {\n    \"ExportJobId\": \"string\",\n    \"DataSetId\": \"string\",\n    \"Name\": \"string\",\n    \"Status\": 4191,\n    \"SubmitDate\": \"1972-07-07T13:47:16.648Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a89938d4-bc0b-42e4-a79c-b4cb1235beaa",
+          "name": "Download an export job result",
+          "request": {
+            "name": "Download an export job result",
+            "description": {
+              "content": "Downloads the ZIP file (containing a CSV) produced by a completed export job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "dataExport",
+                "download",
+                ":exportJobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exportJobId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68cfdae1-823f-4aad-bff3-7f0fdf553478",
+              "name": "The export ZIP file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "dataExport",
+                    "download",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7088ef8d-d89f-4c4b-b75e-ceef814b4bea",
+          "name": "List Brightspace Data Sets",
+          "request": {
+            "name": "List Brightspace Data Sets",
+            "description": {
+              "content": "Retrieves the list of Brightspace Data Sets schemas and their available extracts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lp",
+                "1.53",
+                "datasets",
+                "bds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Brightspace instance hostname.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "885c2fc2-fb87-485d-90ff-685941f6876c",
+              "name": "A list of Brightspace Data Sets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lp",
+                    "1.53",
+                    "datasets",
+                    "bds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Brightspace instance hostname.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"SchemaId\": \"string\",\n    \"Name\": \"string\",\n    \"PluginId\": \"string\",\n    \"Extracts\": [\n      {\n        \"ExtractId\": \"string\",\n        \"CreatedDate\": \"2002-09-10T06:01:25.824Z\",\n        \"DownloadLink\": \"string\"\n      },\n      {\n        \"ExtractId\": \"string\",\n        \"CreatedDate\": \"1975-05-06T13:23:47.107Z\",\n        \"DownloadLink\": \"string\"\n      }\n    ]\n  },\n  {\n    \"SchemaId\": \"string\",\n    \"Name\": \"string\",\n    \"PluginId\": \"string\",\n    \"Extracts\": [\n      {\n        \"ExtractId\": \"string\",\n        \"CreatedDate\": \"2025-05-03T13:45:20.523Z\",\n        \"DownloadLink\": \"string\"\n      },\n      {\n        \"ExtractId\": \"string\",\n        \"CreatedDate\": \"2018-03-07T01:08:30.155Z\",\n        \"DownloadLink\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Brightspace instance hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myschool.brightspace.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/d2l/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "core:*:* users:userdata:read enrollment:orgunit:read datahub:dataexports:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.brightspace.com/core/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.brightspace.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d907a710-8fe0-4164-8bd0-2e6289781e31",
+    "name": "D2L Brightspace Valence Learning Framework Assignments Data Hub API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution's own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: \"lp\" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and \"le\" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. \"Valence\" is the historical name of the API framework; \"D2L\" is the vendor and \"Brightspace\" the product.\n\nContact Support:\n Name: D2L Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

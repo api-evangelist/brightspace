@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments Grades API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Grades",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List grade objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/grades/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves all the grade objects in a course offering's gradebook."
+        },
+        {
+          "info": {
+            "name": "Create a grade object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/grades/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new grade object in a course offering's gradebook."
+        },
+        {
+          "info": {
+            "name": "Get a user's grade value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/grades/:gradeObjectId/values/:userId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gradeObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single user's grade value for a grade object."
+        },
+        {
+          "info": {
+            "name": "Set a user's grade value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/grades/:gradeObjectId/values/:userId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gradeObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates a single user's grade value for a grade object."
+        },
+        {
+          "info": {
+            "name": "Get a user's final grade",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/grades/final/values/:userId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the final calculated or adjusted grade value for a user in a course offering."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

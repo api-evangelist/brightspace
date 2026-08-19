@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "D2L Brightspace Valence Learning Framework Assignments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.brightspace.com/oauth2/auth",
+      "accessTokenUrl": "https://auth.brightspace.com/core/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assignments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List assignment folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/dropbox/folders/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves all the assignment (dropbox) folders in a course offering."
+        },
+        {
+          "info": {
+            "name": "Create an assignment folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/dropbox/folders/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new assignment (dropbox) folder in a course offering."
+        },
+        {
+          "info": {
+            "name": "List submissions for an assignment folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/dropbox/folders/:folderId/submissions/",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the submissions made to an assignment (dropbox) folder."
+        },
+        {
+          "info": {
+            "name": "Post feedback on a submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/d2l/api/le/1.92/:orgUnitId/dropbox/folders/:folderId/feedback/:entityType/:entityId",
+            "params": [
+              {
+                "name": "orgUnitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets instructor feedback (score, text, published state) for a submission entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
