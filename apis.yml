@@ -485,6 +485,8 @@ apis:
   humanURL: https://docs.valence.desire2learn.com/res/user.html
   baseURL: https://{host}/d2l/api/lp
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
