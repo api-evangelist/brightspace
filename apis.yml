@@ -574,6 +574,9 @@ apis:
   - type: APIReference
     url: https://docs.valence.desire2learn.com/res/dataExport.html
 common:
+- type: CapabilityMap
+  url: capabilities/brightspace-capability-edges.yml
+  name: D2L Brightspace Business Capability Map
 - type: AgenticAccess
   url: agentic-access/brightspace-agentic-access.yml
 - type: DomainSecurity

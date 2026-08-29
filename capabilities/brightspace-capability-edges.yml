@@ -1,0 +1,76 @@
+slug: brightspace
+provider: D2L Brightspace
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Enrollments
+  spec_file: brightspace-enrollments-api-openapi.yml
+  capability_id: BC-4720.10
+  capability_id_l1: BC-4720
+  capability_name: Enrolment & Registration
+  confidence: 0.85
+  evidence: POST /lp/1.53/enrollments/  createEnrollment  Enroll a user; DELETE ... deleteEnrollment  Unenroll
+    a user from an org unit
+  reason: Explicit enrolment and unenrolment of users in course org units, with EnrollmentData records
+    — directly the enrolment and registration capability.
+- tag: Quizzes
+  spec_file: brightspace-quizzes-api-openapi.yml
+  capability_id: BC-4740
+  capability_id_l1: BC-4740
+  capability_name: Assessment & Examinations Management
+  confidence: 0.85
+  evidence: POST /le/1.92/{orgUnitId}/quizzes/ createQuiz "Create a quiz"; GET .../quizzes/{quizId}/attempts/
+    "List quiz attempts"; schemas Quiz, QuizAttempt
+  reason: LMS quiz authoring and learner attempt records are assessment/examination management; evidence
+    spans both design (create quiz) and delivery (attempts), so the L2 is left unspecified.
+- tag: Assignments
+  spec_file: brightspace-assignments-api-openapi.yml
+  capability_id: BC-4740
+  capability_id_l1: BC-4740
+  capability_name: Assessment & Examinations Management
+  confidence: 0.8
+  evidence: List submissions for an assignment folder; POST ... /feedback/{entityType}/{entityId}  setDropboxFeedback  Post
+    feedback on a submission
+  reason: LMS dropbox/assignment folders with student submissions and instructor feedback — assessment
+    administration and marking of student work. Kept at L1 because the surface spans assessment setup,
+    submission intake and feedback rather than one narrow sub-capability.
+- tag: Grades
+  spec_file: brightspace-grades-api-openapi.yml
+  capability_id: BC-4740.30
+  capability_id_l1: BC-4740
+  capability_name: Marking & Grading Operations
+  confidence: 0.75
+  evidence: PUT /le/1.92/{orgUnitId}/grades/{gradeObjectId}/values/{userId}  setGradeValueForUser  Set
+    a user's grade value; getFinalGradeForUser  Get a user's final grade
+  reason: Gradebook objects, per-user grade values and final grade computation are marking and grade-aggregation
+    operations. Some overlap with academic record management, so not maximal confidence.
+- tag: Learning Outcomes
+  spec_file: brightspace-learning-outcomes-api-openapi.yml
+  capability_id: BC-4700.30
+  capability_id_l1: BC-4700
+  capability_name: Curriculum Mapping & Alignment
+  confidence: 0.75
+  evidence: GET /le/1.92/lo/outcomeSets/  listOutcomeSets  List organization outcome sets; listOutcomeAlignments  List
+    outcome alignments for an org unit
+  reason: Outcome sets and their alignment to org units is mapping of curriculum to competency/outcome
+    frameworks. Clear curriculum-management fit; sub-capability inferred from 'alignments'.
+- tag: Discussions
+  spec_file: brightspace-discussions-api-openapi.yml
+  capability_id: BC-4730
+  capability_id_l1: BC-4730
+  capability_name: Teaching & Learning Operations Management
+  confidence: 0.7
+  evidence: GET /le/1.92/{orgUnitId}/discussions/forums/  listDiscussionForums; createDiscussionPost  Create
+    a post in a discussion topic
+  reason: Course discussion forums and posts are an online teaching-and-learning delivery mechanism within
+    the LMS. L1 only as it straddles online delivery and learning-environment operation.
