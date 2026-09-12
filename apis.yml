@@ -2,17 +2,7 @@ aid: brightspace
 url: https://raw.githubusercontent.com/api-evangelist/brightspace/refs/heads/main/apis.yml
 name: D2L Brightspace
 kind: company
-description: >-
-  D2L Brightspace is an enterprise learning management system (LMS) used by
-  higher education, K-12, and corporate organizations. Its public REST API is
-  the Valence Learning Framework API, exposed under https://{host}/d2l/api/ and
-  split into two product components - "lp" (Learning Platform - users, roles,
-  enrollments, org units, data hub) and "le" (Learning Environment - content,
-  grades, assignments/dropbox, quizzes, discussions, calendar, news, learning
-  outcomes). Routes are versioned per component (for example lp 1.x and le 1.x)
-  and authenticated with OAuth 2 bearer tokens issued by the D2L auth service;
-  the older ID-Key (app-id/user-id) scheme is deprecated. D2L is the vendor;
-  Valence is the historical name of the API framework.
+description: D2L Brightspace is an enterprise learning management system (LMS) used by higher education, K-12, and corporate organizations. Its public REST API is the Valence Learning Framework API, exposed under https://{host}/d2l/api/ and split into two product components - "lp" (Learning Platform - users, roles, enrollments, org units, data hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, learning outcomes). Routes are versioned per component (for example lp 1.x and le 1.x) and authenticated with OAuth 2 bearer tokens issued by the D2L auth service; the older ID-Key (app-id/user-id) scheme is deprecated. D2L is the vendor; Valence is the historical name of the API framework.
 deliveryModel:
   model: saas
   open_source: false
@@ -573,6 +563,102 @@ apis:
     url: https://docs.valence.desire2learn.com/res/outcomes.html
   - type: APIReference
     url: https://docs.valence.desire2learn.com/res/dataExport.html
+- aid: brightspace:brightspace-lp-api
+  name: Brightspace Learning Platform (LP) API
+  description: 'The core Learning Platform API provides access to organizational units, user accounts, enrollments, roles, permissions, and configuration variables. Manage courses, departments, semesters, and the full organizational hierarchy of a Brightspace deployment. Supports user profile management, notifications, demographics, accommodations, and award management.
+
+    '
+  humanURL: https://docs.valence.desire2learn.com/reference.html
+  baseURL: https://{yourBrightspaceHost}/d2l/api/lp
+  tags:
+  - User
+  - Enrollments
+  - Roles
+  - Organizational Units
+  - Permissions
+  tags_raw:
+  - Users
+  - Enrollments
+  - Roles
+  - Organizational Units
+  - Permissions
+  properties:
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
+  - type: OpenAPI
+    url: https://docs.valence.desire2learn.com/reference.html
+  - url: graphql/d2l-graphql.md
+    type: GraphQL
+- aid: brightspace:brightspace-le-api
+  name: Brightspace Learning Environment (LE) API
+  description: 'The Learning Environment API provides access to course content, dropbox folders, grade objects, grade values, quizzes, surveys, discussions, forums, checklists, rubrics, release conditions, and intelligent agents. Developers can programmatically create and manage assessments, retrieve grades, post discussions, and automate the full lifecycle of academic content and evaluation within Brightspace courses.
+
+    '
+  humanURL: https://docs.valence.desire2learn.com/reference.html
+  baseURL: https://{yourBrightspaceHost}/d2l/api/le
+  tags:
+  - Courses
+  - Grades
+  - Content
+  - Quizzes
+  - Discussions
+  - Rubrics
+  - Assessments
+  properties:
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
+- aid: brightspace:brightspace-eportfolio-api
+  name: Brightspace ePortfolio API
+  description: 'The ePortfolio API enables management of ePortfolio objects including artifacts, reflections, collections, activities, presentations, and objectives. Supports sharing, subscriptions, invites, comments, and tags within the Brightspace ePortfolio system, allowing institutions to build integrations around student portfolio and lifelong learning records.
+
+    '
+  humanURL: https://docs.valence.desire2learn.com/reference.html
+  baseURL: https://{yourBrightspaceHost}/d2l/api/eP
+  tags:
+  - ePortfolio
+  - Artifacts
+  - Reflections
+  - Collection
+  - Presentations
+  tags_raw:
+  - ePortfolio
+  - Artifacts
+  - Reflections
+  - Collections
+  - Presentations
+  properties:
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
+- aid: brightspace:brightspace-data-hub-api
+  name: Brightspace Data Hub (BDS) API
+  description: 'The Data Hub API provides access to bulk data export functionality, enabling institutions to extract large datasets of users, enrollments, grades, activity, and content for analytics, reporting, and data warehousing purposes. Supports scheduled and on-demand data set exports in standard formats for integration with institutional data platforms and business intelligence tools.
+
+    '
+  humanURL: https://docs.valence.desire2learn.com/reference.html
+  baseURL: https://{yourBrightspaceHost}/d2l/api/lp
+  tags:
+  - Data Export
+  - Analytics
+  - Reporting
+  - Bulk Data
+  properties:
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
+- aid: brightspace:brightspace-ipsis-api
+  name: Brightspace IPSIS (SIS Integration) API
+  description: 'The IPSIS API provides a standardized interface for Student Information System (SIS) integration with Brightspace, enabling automated provisioning and management of courses, sections, users, enrollments, and grade passback. Supports one-way and two-way synchronization between institutional SIS platforms and the Brightspace LMS for streamlined academic administration.
+
+    '
+  humanURL: https://docs.valence.desire2learn.com/reference.html
+  baseURL: https://{yourBrightspaceHost}/d2l/api/ipsis
+  tags:
+  - SIS Integration
+  - Student Information System
+  - Provisioning
+  - Synchronization
+  properties:
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
 common:
 - type: CapabilityMap
   url: capabilities/brightspace-capability-edges.yml
