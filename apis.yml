@@ -247,6 +247,8 @@ apis:
   humanURL: https://docs.valence.desire2learn.com/res/user.html
   baseURL: https://{host}/d2l/api/lp
   tags:
+  - Enrollment
+  tags_raw:
   - Enrollments
   properties:
   - type: OpenAPI
@@ -573,6 +575,14 @@ apis:
   humanURL: https://docs.valence.desire2learn.com/reference.html
   baseURL: https://{yourBrightspaceHost}/d2l/api/le
   tags:
+  - Courses
+  - Grades
+  - Content
+  - Quizzes
+  - Discussions
+  - Rubrics
+  - Assessment
+  tags_raw:
   - Courses
   - Grades
   - Content
