@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: D2L Brightspace Valence Learning Framework Assignments Users API
-  description: 'The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS). It is served from an institution''s own Brightspace host under https://{host}/d2l/api/ and is divided into two product components: "lp" (Learning Platform - users, roles, enrollments, org units, and Data Hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, and learning outcomes). Each component is independently versioned; the version segment in a route (for example lp/1.53 or le/1.92) varies by installed Brightspace product version, and clients should confirm supported versions via GET /d2l/api/versions/ before hard-coding a value. Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service (https://auth.brightspace.com/core/connect/token) using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. Scopes take the form group:resource:action, for example users:userdata:read. The version values baked into the paths below are illustrative of a recent release and must be adjusted to the target instance. "Valence" is the historical name of the API framework; "D2L" is the vendor and "Brightspace" the product.'
+  title: D2L Brightspace Valence Learning Framework Users API
+  description: The Valence Learning Framework API is the public REST API for the D2L Brightspace learning management system (LMS).
   version: '1.0'
   contact:
     name: D2L Developer Platform
@@ -148,6 +148,13 @@ paths:
                   $ref: '#/components/schemas/Role'
 components:
   schemas:
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
     WhoAmIUser:
       type: object
       properties:
@@ -161,21 +168,12 @@ components:
           type: string
         ProfileIdentifier:
           type: string
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    CreateUserData:
+    UpdateUserData:
       type: object
       properties:
         OrgDefinedId:
           type: string
         FirstName:
-          type: string
-        MiddleName:
           type: string
         LastName:
           type: string
@@ -183,12 +181,20 @@ components:
           type: string
         UserName:
           type: string
-        RoleId:
-          type: integer
-        IsActive:
-          type: boolean
-        SendCreationEmail:
-          type: boolean
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
+    UserPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
     Role:
       type: object
       properties:
@@ -219,12 +225,14 @@ components:
           properties:
             IsActive:
               type: boolean
-    UpdateUserData:
+    CreateUserData:
       type: object
       properties:
         OrgDefinedId:
           type: string
         FirstName:
+          type: string
+        MiddleName:
           type: string
         LastName:
           type: string
@@ -232,20 +240,12 @@ components:
           type: string
         UserName:
           type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
-    UserPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
+        RoleId:
+          type: integer
+        IsActive:
+          type: boolean
+        SendCreationEmail:
+          type: boolean
   responses:
     NotFound:
       description: The requested resource was not found.

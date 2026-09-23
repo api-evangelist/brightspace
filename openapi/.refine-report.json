@@ -1,19 +1,7 @@
 {
   "provider": "brightspace",
   "sources": [
-    "brightspace-assignments-api-openapi.yml",
-    "brightspace-calendar-api-openapi.yml",
-    "brightspace-content-api-openapi.yml",
-    "brightspace-data-hub-api-openapi.yml",
-    "brightspace-discussions-api-openapi.yml",
-    "brightspace-enrollments-api-openapi.yml",
-    "brightspace-grades-api-openapi.yml",
-    "brightspace-learning-outcomes-api-openapi.yml",
-    "brightspace-news-api-openapi.yml",
-    "brightspace-org-units-api-openapi.yml",
-    "brightspace-quizzes-api-openapi.yml",
-    "brightspace-users-api-openapi.yml",
-    "brightspace-versions-api-openapi.yml"
+    "_original/brightspace-openapi.yml"
   ],
   "outputs": [
     "brightspace-assignments-api-openapi.yml",
@@ -33,6 +21,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "brightspace-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "brightspace-assignments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-calendar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-data-hub-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-discussions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-enrollments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-grades-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-learning-outcomes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-news-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-org-units-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-quizzes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "brightspace-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
