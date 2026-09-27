@@ -90,15 +90,15 @@ paths:
           description: The event was deleted.
 components:
   parameters:
-    OrgUnitId:
-      name: orgUnitId
+    EventId:
+      name: eventId
       in: path
       required: true
       schema:
         type: integer
         format: int64
-    EventId:
-      name: eventId
+    OrgUnitId:
+      name: orgUnitId
       in: path
       required: true
       schema:

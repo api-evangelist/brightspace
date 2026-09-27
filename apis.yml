@@ -40,6 +40,7 @@ tags:
 - Valence
 - D2L
 - Brightspace
+- Canada
 created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.23'
@@ -166,11 +167,20 @@ apis:
     url: https://docs.valence.desire2learn.com/res/dataExport.html
 - aid: brightspace:brightspace-data-hub-api
   name: D2L Brightspace Data Hub API
-  description: Data Export Framework and Brightspace Data Sets.
+  description: 'The Data Hub API provides access to bulk data export functionality, enabling institutions
+    to extract large datasets of users, enrollments, grades, activity, and content for analytics, reporting,
+    and data warehousing purposes. Supports scheduled and on-demand data set exports in standard formats
+    for integration with institutional data platforms and business intelligence tools.
+
+    '
   humanURL: https://docs.valence.desire2learn.com/res/user.html
   baseURL: https://{host}/d2l/api/lp
   tags:
   - Data Hub
+  - Data Export
+  - Analytics
+  - Reporting
+  - Bulk Data
   properties:
   - type: OpenAPI
     url: openapi/brightspace-data-hub-api-openapi.yml
@@ -204,6 +214,8 @@ apis:
     url: https://docs.valence.desire2learn.com/res/outcomes.html
   - type: APIReference
     url: https://docs.valence.desire2learn.com/res/dataExport.html
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/reference.html
 - aid: brightspace:brightspace-discussions-api
   name: D2L Brightspace Discussions API
   description: Discussion forums, topics, and posts.
@@ -617,23 +629,6 @@ apis:
   - Reflections
   - Collections
   - Presentations
-  properties:
-  - type: Documentation
-    url: https://docs.valence.desire2learn.com/reference.html
-- aid: brightspace:brightspace-data-hub-api
-  name: Brightspace Data Hub (BDS) API
-  description: >
-    The Data Hub API provides access to bulk data export functionality, enabling institutions to extract
-    large datasets of users, enrollments, grades, activity, and content for analytics, reporting, and
-    data warehousing purposes. Supports scheduled and on-demand data set exports in standard formats for
-    integration with institutional data platforms and business intelligence tools.
-  humanURL: https://docs.valence.desire2learn.com/reference.html
-  baseURL: https://{yourBrightspaceHost}/d2l/api/lp
-  tags:
-  - Data Export
-  - Analytics
-  - Reporting
-  - Bulk Data
   properties:
   - type: Documentation
     url: https://docs.valence.desire2learn.com/reference.html

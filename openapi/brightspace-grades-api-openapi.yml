@@ -127,20 +127,6 @@ components:
           type: string
         MaxPoints:
           type: number
-    GradeValue:
-      type: object
-      properties:
-        UserId:
-          type: integer
-          format: int64
-        GradeObjectIdentifier:
-          type: string
-        PointsNumerator:
-          type: number
-        PointsDenominator:
-          type: number
-        DisplayedGrade:
-          type: string
     IncomingGradeValue:
       type: object
       properties:
@@ -155,14 +141,21 @@ components:
               type: string
             Type:
               type: string
+    GradeValue:
+      type: object
+      properties:
+        UserId:
+          type: integer
+          format: int64
+        GradeObjectIdentifier:
+          type: string
+        PointsNumerator:
+          type: number
+        PointsDenominator:
+          type: number
+        DisplayedGrade:
+          type: string
   parameters:
-    GradeObjectId:
-      name: gradeObjectId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
     UserId:
       name: userId
       in: path
@@ -172,6 +165,13 @@ components:
         format: int64
     OrgUnitId:
       name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    GradeObjectId:
+      name: gradeObjectId
       in: path
       required: true
       schema:

@@ -111,24 +111,15 @@ paths:
                 $ref: '#/components/schemas/Organization'
 components:
   schemas:
-    OrgUnit:
+    OrgUnitPagedResultSet:
       type: object
       properties:
-        Identifier:
-          type: string
-        Name:
-          type: string
-        Code:
-          type: string
-        Type:
-          type: object
-          properties:
-            Id:
-              type: integer
-            Code:
-              type: string
-            Name:
-              type: string
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUnit'
     PagingInfo:
       type: object
       properties:
@@ -162,15 +153,24 @@ components:
           type: string
         TimeZone:
           type: string
-    OrgUnitPagedResultSet:
+    OrgUnit:
       type: object
       properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUnit'
+        Identifier:
+          type: string
+        Name:
+          type: string
+        Code:
+          type: string
+        Type:
+          type: object
+          properties:
+            Id:
+              type: integer
+            Code:
+              type: string
+            Name:
+              type: string
   parameters:
     OrgUnitId:
       name: orgUnitId

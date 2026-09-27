@@ -92,6 +92,13 @@ components:
         IsHidden:
           type: boolean
   parameters:
+    ModuleId:
+      name: moduleId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
     TopicId:
       name: topicId
       in: path
@@ -101,13 +108,6 @@ components:
         format: int64
     OrgUnitId:
       name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    ModuleId:
-      name: moduleId
       in: path
       required: true
       schema:

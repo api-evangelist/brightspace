@@ -133,6 +133,17 @@ paths:
           description: The user was unenrolled.
 components:
   schemas:
+    CreateEnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
     EnrollmentData:
       type: object
       properties:
@@ -153,17 +164,6 @@ components:
           type: string
         HasMoreItems:
           type: boolean
-    CreateEnrollmentData:
-      type: object
-      properties:
-        OrgUnitId:
-          type: integer
-          format: int64
-        UserId:
-          type: integer
-          format: int64
-        RoleId:
-          type: integer
     EnrollmentPagedResultSet:
       type: object
       properties:

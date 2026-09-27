@@ -113,21 +113,6 @@ paths:
                   $ref: '#/components/schemas/BrightspaceDataSet'
 components:
   schemas:
-    ExportJobData:
-      type: object
-      properties:
-        ExportJobId:
-          type: string
-        DataSetId:
-          type: string
-        Name:
-          type: string
-        Status:
-          type: integer
-          description: Export job status (Queued, Processing, Complete, Error, Deleted).
-        SubmitDate:
-          type: string
-          format: date-time
     BrightspaceDataSet:
       type: object
       properties:
@@ -160,6 +145,21 @@ components:
           type: string
         Category:
           type: string
+    ExportJobData:
+      type: object
+      properties:
+        ExportJobId:
+          type: string
+        DataSetId:
+          type: string
+        Name:
+          type: string
+        Status:
+          type: integer
+          description: Export job status (Queued, Processing, Complete, Error, Deleted).
+        SubmitDate:
+          type: string
+          format: date-time
     CreateExportJobData:
       type: object
       properties:

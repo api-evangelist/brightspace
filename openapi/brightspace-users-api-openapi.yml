@@ -147,63 +147,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Role'
 components:
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+    NotFound:
+      description: The requested resource was not found.
   schemas:
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    WhoAmIUser:
-      type: object
-      properties:
-        Identifier:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        UniqueName:
-          type: string
-        ProfileIdentifier:
-          type: string
-    UpdateUserData:
-      type: object
-      properties:
-        OrgDefinedId:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        ExternalEmail:
-          type: string
-        UserName:
-          type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
-    UserPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-    Role:
-      type: object
-      properties:
-        Identifier:
-          type: string
-        DisplayName:
-          type: string
-        Code:
-          type: string
     UserData:
       type: object
       properties:
@@ -225,6 +174,53 @@ components:
           properties:
             IsActive:
               type: boolean
+    UpdateUserData:
+      type: object
+      properties:
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        ExternalEmail:
+          type: string
+        UserName:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
+    Role:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        DisplayName:
+          type: string
+        Code:
+          type: string
+    WhoAmIUser:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        UniqueName:
+          type: string
+        ProfileIdentifier:
+          type: string
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
     CreateUserData:
       type: object
       properties:
@@ -246,11 +242,15 @@ components:
           type: boolean
         SendCreationEmail:
           type: boolean
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-    Unauthorized:
-      description: The access token is missing or invalid.
+    UserPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
   parameters:
     UserId:
       name: userId
