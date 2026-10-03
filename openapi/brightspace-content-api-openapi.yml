@@ -75,6 +75,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContentObject'
 components:
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    TopicId:
+      name: topicId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ModuleId:
+      name: moduleId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     ContentObject:
       type: object
@@ -91,28 +113,6 @@ components:
           description: 0 for module, 1 for topic.
         IsHidden:
           type: boolean
-  parameters:
-    ModuleId:
-      name: moduleId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    TopicId:
-      name: topicId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

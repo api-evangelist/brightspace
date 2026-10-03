@@ -147,51 +147,20 @@ paths:
                 items:
                   $ref: '#/components/schemas/Role'
 components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
     NotFound:
       description: The requested resource was not found.
+    Unauthorized:
+      description: The access token is missing or invalid.
   schemas:
-    UserData:
-      type: object
-      properties:
-        UserId:
-          type: integer
-          format: int64
-        OrgDefinedId:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        UserName:
-          type: string
-        ExternalEmail:
-          type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
-    UpdateUserData:
-      type: object
-      properties:
-        OrgDefinedId:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        ExternalEmail:
-          type: string
-        UserName:
-          type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
     Role:
       type: object
       properties:
@@ -201,19 +170,15 @@ components:
           type: string
         Code:
           type: string
-    WhoAmIUser:
+    UserPagedResultSet:
       type: object
       properties:
-        Identifier:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        UniqueName:
-          type: string
-        ProfileIdentifier:
-          type: string
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
     PagingInfo:
       type: object
       properties:
@@ -242,23 +207,58 @@ components:
           type: boolean
         SendCreationEmail:
           type: boolean
-    UserPagedResultSet:
+    WhoAmIUser:
       type: object
       properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-  parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
+        Identifier:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        UniqueName:
+          type: string
+        ProfileIdentifier:
+          type: string
+    UpdateUserData:
+      type: object
+      properties:
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        ExternalEmail:
+          type: string
+        UserName:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
+    UserData:
+      type: object
+      properties:
+        UserId:
+          type: integer
+          format: int64
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        UserName:
+          type: string
+        ExternalEmail:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
   securitySchemes:
     oauth2:
       type: oauth2

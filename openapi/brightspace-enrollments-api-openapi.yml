@@ -132,47 +132,6 @@ paths:
         '200':
           description: The user was unenrolled.
 components:
-  schemas:
-    CreateEnrollmentData:
-      type: object
-      properties:
-        OrgUnitId:
-          type: integer
-          format: int64
-        UserId:
-          type: integer
-          format: int64
-        RoleId:
-          type: integer
-    EnrollmentData:
-      type: object
-      properties:
-        OrgUnitId:
-          type: integer
-          format: int64
-        UserId:
-          type: integer
-          format: int64
-        RoleId:
-          type: integer
-        IsCascading:
-          type: boolean
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    EnrollmentPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnrollmentData'
   parameters:
     UserId:
       name: userId
@@ -188,6 +147,47 @@ components:
       schema:
         type: integer
         format: int64
+  schemas:
+    EnrollmentPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentData'
+    EnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
+        IsCascading:
+          type: boolean
+    CreateEnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
   securitySchemes:
     oauth2:
       type: oauth2

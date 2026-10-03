@@ -102,18 +102,6 @@ paths:
                 $ref: '#/components/schemas/Post'
 components:
   schemas:
-    Forum:
-      type: object
-      properties:
-        ForumId:
-          type: integer
-          format: int64
-        Name:
-          type: string
-        Description:
-          type: object
-        AllowAnonymousPosts:
-          type: boolean
     Post:
       type: object
       properties:
@@ -131,6 +119,18 @@ components:
               type: string
         ParentPostId:
           type: integer
+    Forum:
+      type: object
+      properties:
+        ForumId:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        Description:
+          type: object
+        AllowAnonymousPosts:
+          type: boolean
   parameters:
     ForumId:
       name: forumId

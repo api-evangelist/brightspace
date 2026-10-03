@@ -110,36 +110,22 @@ paths:
         '200':
           description: The feedback was set.
 components:
-  parameters:
-    FolderId:
-      name: folderId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
-    DropboxFeedback:
+    DropboxFolder:
       type: object
       properties:
-        Score:
-          type: number
-        Feedback:
-          type: object
-          properties:
-            Content:
-              type: string
-            Type:
-              type: string
-        IsGraded:
-          type: boolean
+        Id:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        CategoryId:
+          type: integer
+        TotalFiles:
+          type: integer
+        DueDate:
+          type: string
+          format: date-time
     EntityDropbox:
       type: object
       properties:
@@ -161,21 +147,35 @@ components:
                 type: object
               Comment:
                 type: object
-    DropboxFolder:
+    DropboxFeedback:
       type: object
       properties:
-        Id:
-          type: integer
-          format: int64
-        Name:
-          type: string
-        CategoryId:
-          type: integer
-        TotalFiles:
-          type: integer
-        DueDate:
-          type: string
-          format: date-time
+        Score:
+          type: number
+        Feedback:
+          type: object
+          properties:
+            Content:
+              type: string
+            Type:
+              type: string
+        IsGraded:
+          type: boolean
+  parameters:
+    FolderId:
+      name: folderId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

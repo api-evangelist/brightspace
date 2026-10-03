@@ -55,6 +55,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProductVersions'
 components:
+  parameters:
+    ProductCode:
+      name: productCode
+      in: path
+      required: true
+      description: The product component code, for example lp or le.
+      schema:
+        type: string
   schemas:
     ProductVersions:
       type: object
@@ -67,14 +75,6 @@ components:
           type: array
           items:
             type: string
-  parameters:
-    ProductCode:
-      name: productCode
-      in: path
-      required: true
-      description: The product component code, for example lp or le.
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2
