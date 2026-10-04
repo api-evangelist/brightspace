@@ -147,45 +147,30 @@ paths:
                 items:
                   $ref: '#/components/schemas/Role'
 components:
-  parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   responses:
     NotFound:
       description: The requested resource was not found.
     Unauthorized:
       description: The access token is missing or invalid.
   schemas:
-    Role:
+    UpdateUserData:
       type: object
       properties:
-        Identifier:
+        OrgDefinedId:
           type: string
-        DisplayName:
+        FirstName:
           type: string
-        Code:
+        LastName:
           type: string
-    UserPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
+        ExternalEmail:
           type: string
-        HasMoreItems:
-          type: boolean
+        UserName:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
     CreateUserData:
       type: object
       properties:
@@ -207,6 +192,15 @@ components:
           type: boolean
         SendCreationEmail:
           type: boolean
+    UserPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
     WhoAmIUser:
       type: object
       properties:
@@ -220,24 +214,6 @@ components:
           type: string
         ProfileIdentifier:
           type: string
-    UpdateUserData:
-      type: object
-      properties:
-        OrgDefinedId:
-          type: string
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        ExternalEmail:
-          type: string
-        UserName:
-          type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
     UserData:
       type: object
       properties:
@@ -259,6 +235,30 @@ components:
           properties:
             IsActive:
               type: boolean
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
+    Role:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        DisplayName:
+          type: string
+        Code:
+          type: string
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

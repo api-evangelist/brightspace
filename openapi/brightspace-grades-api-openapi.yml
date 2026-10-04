@@ -112,29 +112,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/GradeValue'
 components:
-  parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    GradeObjectId:
-      name: gradeObjectId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
+    IncomingGradeValue:
+      type: object
+      properties:
+        GradeObjectType:
+          type: integer
+        PointsNumerator:
+          type: number
+        Comments:
+          type: object
+          properties:
+            Content:
+              type: string
+            Type:
+              type: string
     GradeValue:
       type: object
       properties:
@@ -163,20 +155,28 @@ components:
           type: string
         MaxPoints:
           type: number
-    IncomingGradeValue:
-      type: object
-      properties:
-        GradeObjectType:
-          type: integer
-        PointsNumerator:
-          type: number
-        Comments:
-          type: object
-          properties:
-            Content:
-              type: string
-            Type:
-              type: string
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    GradeObjectId:
+      name: gradeObjectId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

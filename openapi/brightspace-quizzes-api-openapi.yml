@@ -84,6 +84,15 @@ paths:
                   $ref: '#/components/schemas/QuizAttempt'
 components:
   schemas:
+    QuizPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Quiz'
     Quiz:
       type: object
       properties:
@@ -98,6 +107,13 @@ components:
           type: boolean
         GradeItemId:
           type: integer
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
     QuizAttempt:
       type: object
       properties:
@@ -114,32 +130,16 @@ components:
         TimeCompleted:
           type: string
           format: date-time
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    QuizPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Quiz'
   parameters:
-    OrgUnitId:
-      name: orgUnitId
+    QuizId:
+      name: quizId
       in: path
       required: true
       schema:
         type: integer
         format: int64
-    QuizId:
-      name: quizId
+    OrgUnitId:
+      name: orgUnitId
       in: path
       required: true
       schema:

@@ -89,6 +89,21 @@ paths:
         '200':
           description: The event was deleted.
 components:
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    EventId:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     CalendarEvent:
       type: object
@@ -108,21 +123,6 @@ components:
           format: date-time
         IsAllDayEvent:
           type: boolean
-  parameters:
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    EventId:
-      name: eventId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

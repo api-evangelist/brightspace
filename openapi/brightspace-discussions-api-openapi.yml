@@ -101,6 +101,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/Post'
 components:
+  parameters:
+    TopicId:
+      name: topicId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ForumId:
+      name: forumId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     Post:
       type: object
@@ -131,28 +153,6 @@ components:
           type: object
         AllowAnonymousPosts:
           type: boolean
-  parameters:
-    ForumId:
-      name: forumId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    TopicId:
-      name: topicId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

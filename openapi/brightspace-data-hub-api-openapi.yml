@@ -113,6 +113,17 @@ paths:
                   $ref: '#/components/schemas/BrightspaceDataSet'
 components:
   schemas:
+    DataSetData:
+      type: object
+      properties:
+        DataSetId:
+          type: string
+        Name:
+          type: string
+        Description:
+          type: string
+        Category:
+          type: string
     ExportJobData:
       type: object
       properties:
@@ -163,17 +174,6 @@ components:
                 type: string
               Value:
                 type: string
-    DataSetData:
-      type: object
-      properties:
-        DataSetId:
-          type: string
-        Name:
-          type: string
-        Description:
-          type: string
-        Category:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

@@ -77,17 +77,6 @@ paths:
                   $ref: '#/components/schemas/OutcomeAlignment'
 components:
   schemas:
-    OutcomeSet:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        source:
-          type: string
     OutcomeAlignment:
       type: object
       properties:
@@ -98,6 +87,17 @@ components:
         activityType:
           type: string
         objectId:
+          type: string
+    OutcomeSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        source:
           type: string
   parameters:
     OrgUnitId:

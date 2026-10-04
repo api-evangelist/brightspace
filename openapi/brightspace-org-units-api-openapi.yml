@@ -111,6 +111,32 @@ paths:
                 $ref: '#/components/schemas/Organization'
 components:
   schemas:
+    CourseOffering:
+      type: object
+      properties:
+        Identifier:
+          type: string
+        Name:
+          type: string
+        Code:
+          type: string
+        IsActive:
+          type: boolean
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+    OrgUnitPagedResultSet:
+      type: object
+      properties:
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUnit'
     Organization:
       type: object
       properties:
@@ -120,6 +146,13 @@ components:
           type: string
         TimeZone:
           type: string
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
     OrgUnit:
       type: object
       properties:
@@ -138,39 +171,6 @@ components:
               type: string
             Name:
               type: string
-    CourseOffering:
-      type: object
-      properties:
-        Identifier:
-          type: string
-        Name:
-          type: string
-        Code:
-          type: string
-        IsActive:
-          type: boolean
-        StartDate:
-          type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    OrgUnitPagedResultSet:
-      type: object
-      properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUnit'
   parameters:
     OrgUnitId:
       name: orgUnitId
