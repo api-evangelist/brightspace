@@ -110,22 +110,21 @@ paths:
         '200':
           description: The feedback was set.
 components:
-  parameters:
-    FolderId:
-      name: folderId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
+    DropboxFeedback:
+      type: object
+      properties:
+        Score:
+          type: number
+        Feedback:
+          type: object
+          properties:
+            Content:
+              type: string
+            Type:
+              type: string
+        IsGraded:
+          type: boolean
     DropboxFolder:
       type: object
       properties:
@@ -141,20 +140,6 @@ components:
         DueDate:
           type: string
           format: date-time
-    DropboxFeedback:
-      type: object
-      properties:
-        Score:
-          type: number
-        Feedback:
-          type: object
-          properties:
-            Content:
-              type: string
-            Type:
-              type: string
-        IsGraded:
-          type: boolean
     EntityDropbox:
       type: object
       properties:
@@ -176,6 +161,21 @@ components:
                 type: object
               Comment:
                 type: object
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    FolderId:
+      name: folderId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

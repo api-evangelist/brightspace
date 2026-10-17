@@ -133,6 +133,26 @@ paths:
           description: The user was unenrolled.
 components:
   schemas:
+    EnrollmentData:
+      type: object
+      properties:
+        OrgUnitId:
+          type: integer
+          format: int64
+        UserId:
+          type: integer
+          format: int64
+        RoleId:
+          type: integer
+        IsCascading:
+          type: boolean
+    PagingInfo:
+      type: object
+      properties:
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
     EnrollmentPagedResultSet:
       type: object
       properties:
@@ -153,26 +173,6 @@ components:
           format: int64
         RoleId:
           type: integer
-    PagingInfo:
-      type: object
-      properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    EnrollmentData:
-      type: object
-      properties:
-        OrgUnitId:
-          type: integer
-          format: int64
-        UserId:
-          type: integer
-          format: int64
-        RoleId:
-          type: integer
-        IsCascading:
-          type: boolean
   parameters:
     UserId:
       name: userId

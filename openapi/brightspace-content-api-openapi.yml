@@ -75,22 +75,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContentObject'
 components:
-  schemas:
-    ContentObject:
-      type: object
-      properties:
-        Id:
-          type: integer
-          format: int64
-        Title:
-          type: string
-        ShortTitle:
-          type: string
-        Type:
-          type: integer
-          description: 0 for module, 1 for topic.
-        IsHidden:
-          type: boolean
   parameters:
     ModuleId:
       name: moduleId
@@ -113,6 +97,22 @@ components:
       schema:
         type: integer
         format: int64
+  schemas:
+    ContentObject:
+      type: object
+      properties:
+        Id:
+          type: integer
+          format: int64
+        Title:
+          type: string
+        ShortTitle:
+          type: string
+        Type:
+          type: integer
+          description: 0 for module, 1 for topic.
+        IsHidden:
+          type: boolean
   securitySchemes:
     oauth2:
       type: oauth2

@@ -148,29 +148,20 @@ paths:
                   $ref: '#/components/schemas/Role'
 components:
   responses:
-    NotFound:
-      description: The requested resource was not found.
     Unauthorized:
       description: The access token is missing or invalid.
+    NotFound:
+      description: The requested resource was not found.
   schemas:
-    UpdateUserData:
+    Role:
       type: object
       properties:
-        OrgDefinedId:
+        Identifier:
           type: string
-        FirstName:
+        DisplayName:
           type: string
-        LastName:
+        Code:
           type: string
-        ExternalEmail:
-          type: string
-        UserName:
-          type: string
-        Activation:
-          type: object
-          properties:
-            IsActive:
-              type: boolean
     CreateUserData:
       type: object
       properties:
@@ -192,15 +183,31 @@ components:
           type: boolean
         SendCreationEmail:
           type: boolean
-    UserPagedResultSet:
+    PagingInfo:
       type: object
       properties:
-        PagingInfo:
-          $ref: '#/components/schemas/PagingInfo'
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
+        Bookmark:
+          type: string
+        HasMoreItems:
+          type: boolean
+    UpdateUserData:
+      type: object
+      properties:
+        OrgDefinedId:
+          type: string
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        ExternalEmail:
+          type: string
+        UserName:
+          type: string
+        Activation:
+          type: object
+          properties:
+            IsActive:
+              type: boolean
     WhoAmIUser:
       type: object
       properties:
@@ -235,22 +242,15 @@ components:
           properties:
             IsActive:
               type: boolean
-    PagingInfo:
+    UserPagedResultSet:
       type: object
       properties:
-        Bookmark:
-          type: string
-        HasMoreItems:
-          type: boolean
-    Role:
-      type: object
-      properties:
-        Identifier:
-          type: string
-        DisplayName:
-          type: string
-        Code:
-          type: string
+        PagingInfo:
+          $ref: '#/components/schemas/PagingInfo'
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
   parameters:
     UserId:
       name: userId

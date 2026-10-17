@@ -76,18 +76,15 @@ paths:
                 items:
                   $ref: '#/components/schemas/OutcomeAlignment'
 components:
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    OutcomeAlignment:
-      type: object
-      properties:
-        id:
-          type: string
-        outcomeId:
-          type: string
-        activityType:
-          type: string
-        objectId:
-          type: string
     OutcomeSet:
       type: object
       properties:
@@ -99,14 +96,17 @@ components:
           type: string
         source:
           type: string
-  parameters:
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
+    OutcomeAlignment:
+      type: object
+      properties:
+        id:
+          type: string
+        outcomeId:
+          type: string
+        activityType:
+          type: string
+        objectId:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2

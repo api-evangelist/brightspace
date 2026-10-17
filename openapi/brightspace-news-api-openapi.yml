@@ -92,14 +92,6 @@ paths:
         '200':
           description: The news item was deleted.
 components:
-  parameters:
-    OrgUnitId:
-      name: orgUnitId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
     NewsItem:
       type: object
@@ -121,6 +113,14 @@ components:
         StartDate:
           type: string
           format: date-time
+  parameters:
+    OrgUnitId:
+      name: orgUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     oauth2:
       type: oauth2

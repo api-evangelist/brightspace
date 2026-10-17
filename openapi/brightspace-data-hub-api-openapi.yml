@@ -113,32 +113,20 @@ paths:
                   $ref: '#/components/schemas/BrightspaceDataSet'
 components:
   schemas:
-    DataSetData:
+    CreateExportJobData:
       type: object
       properties:
         DataSetId:
           type: string
-        Name:
-          type: string
-        Description:
-          type: string
-        Category:
-          type: string
-    ExportJobData:
-      type: object
-      properties:
-        ExportJobId:
-          type: string
-        DataSetId:
-          type: string
-        Name:
-          type: string
-        Status:
-          type: integer
-          description: Export job status (Queued, Processing, Complete, Error, Deleted).
-        SubmitDate:
-          type: string
-          format: date-time
+        Filters:
+          type: array
+          items:
+            type: object
+            properties:
+              Name:
+                type: string
+              Value:
+                type: string
     BrightspaceDataSet:
       type: object
       properties:
@@ -160,20 +148,32 @@ components:
                 format: date-time
               DownloadLink:
                 type: string
-    CreateExportJobData:
+    ExportJobData:
+      type: object
+      properties:
+        ExportJobId:
+          type: string
+        DataSetId:
+          type: string
+        Name:
+          type: string
+        Status:
+          type: integer
+          description: Export job status (Queued, Processing, Complete, Error, Deleted).
+        SubmitDate:
+          type: string
+          format: date-time
+    DataSetData:
       type: object
       properties:
         DataSetId:
           type: string
-        Filters:
-          type: array
-          items:
-            type: object
-            properties:
-              Name:
-                type: string
-              Value:
-                type: string
+        Name:
+          type: string
+        Description:
+          type: string
+        Category:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2
