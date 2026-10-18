@@ -133,5 +133,5 @@
     - connectors/applications/d2l-brightspace
     vendor_link: https://www.d2l.com/en-apac/brightspace/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
