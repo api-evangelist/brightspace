@@ -1,4 +1,4 @@
-# D2L Brightspace (brightspace)
+# D2L Brightspace
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,126 +64,157 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-D2L Brightspace is an enterprise learning management system (LMS) used by higher education, K-12, and corporate organizations. Its public REST API is the **Valence Learning Framework API**, served from each institution's own Brightspace host under `https://{host}/d2l/api/`. Routes are split into two product components - **lp** (Learning Platform: users, roles, enrollments, org units, Data Hub) and **le** (Learning Environment: content, grades, assignments/dropbox, quizzes, discussions, calendar, news, learning outcomes) - and each component is independently versioned (for example `lp/1.53` or `le/1.92`; confirm supported versions via `GET /d2l/api/versions/`). Requests are authenticated with OAuth 2 bearer tokens issued by the D2L auth service using the authorization code grant; the older ID-Key (app-id/user-id signed URL) scheme is deprecated. "D2L" is the vendor, "Brightspace" the product, and "Valence" the historical name of the API framework.
+D2L Brightspace is an enterprise learning management system (LMS) used by higher education, K-12, and corporate organizations. Its public REST API is the Valence Learning Framework API, exposed under https://{host}/d2l/api/ and split into two product components - "lp" (Learning Platform - users, roles, enrollments, org units, data hub) and "le" (Learning Environment - content, grades, assignments/dropbox, quizzes, discussions, calendar, news, learning outcomes). Routes are versioned per component (for example lp 1.x and le 1.x) and authenticated with OAuth 2 bearer tokens issued by the D2L auth service; the older ID-Key (app-id/user-id) scheme is deprecated. D2L is the vendor; Valence is the historical name of the API framework.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/brightspace/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/brightspace/refs/heads/main/apis.yml)
+**Areas:** LMS · EdTech · Education · Valence · D2L · Brightspace · Canada
 
-## Tags
+## D2L Brightspace on APIs.io
 
-- LMS
-- Learning Management System
-- EdTech
-- Education
-- Valence
-- D2L
-- Brightspace
+Everything profiled for D2L Brightspace is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/brightspace/](https://apis.io/providers/brightspace/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (16)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+- [D2L Brightspace Assignments API](https://apis.io/apis/brightspace/brightspace-assignments-api/) — Assignment (Dropbox) folders, submissions, and feedback.
+- [D2L Brightspace Calendar API](https://apis.io/apis/brightspace/brightspace-calendar-api/) — Course calendar events.
+- [D2L Brightspace Content API](https://apis.io/apis/brightspace/brightspace-content-api/) — Course content - modules and topics.
+- [D2L Brightspace Data Hub API](https://apis.io/apis/brightspace/brightspace-data-hub-api/) — The Data Hub API provides access to bulk data export functionality, enabling institutions to extract large datasets of users, enrollments, grades, activity,…
+- [D2L Brightspace Discussions API](https://apis.io/apis/brightspace/brightspace-discussions-api/) — Discussion forums, topics, and posts.
+- [D2L Brightspace Enrollments API](https://apis.io/apis/brightspace/brightspace-enrollments-api/) — Membership of users in org units.
+- [D2L Brightspace Grades API](https://apis.io/apis/brightspace/brightspace-grades-api/) — Course gradebook - grade objects, values, categories, and schemes.
+- [D2L Brightspace Learning Outcomes API](https://apis.io/apis/brightspace/brightspace-learning-outcomes-api/) — Learning outcome sets, outcomes, and alignments.
+- [D2L Brightspace News API](https://apis.io/apis/brightspace/brightspace-news-api/) — News (announcement) items.
+- [D2L Brightspace Org Units API](https://apis.io/apis/brightspace/brightspace-org-units-api/) — Organization structure, course offerings, departments, and semesters.
+- [D2L Brightspace Quizzes API](https://apis.io/apis/brightspace/brightspace-quizzes-api/) — Quizzes, attempts, questions, and special access.
+- [D2L Brightspace Users API](https://apis.io/apis/brightspace/brightspace-users-api/) — User accounts and roles on the Learning Platform.
+- [D2L Brightspace Versions API](https://apis.io/apis/brightspace/brightspace-versions-api/) — Product component version discovery.
+- [Brightspace Learning Environment (LE) API](https://apis.io/apis/brightspace/brightspace-le-api/) — The Learning Environment API provides access to course content, dropbox folders, grade objects, grade values, quizzes, surveys, discussions, forums,…
+- [Brightspace ePortfolio API](https://apis.io/apis/brightspace/brightspace-eportfolio-api/) — The ePortfolio API enables management of ePortfolio objects including artifacts, reflections, collections, activities, presentations, and objectives.…
+- [Brightspace IPSIS (SIS Integration) API](https://apis.io/apis/brightspace/brightspace-ipsis-api/) — The IPSIS API provides a standardized interface for Student Information System (SIS) integration with Brightspace, enabling automated provisioning and…
 
-## APIs
+### Published properties
 
-### Brightspace Users API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Manage user accounts on the Learning Platform - retrieve the current caller (whoami), list and search users, create, update, and delete users, manage names, activation, pronouns, and passwords, and read the role catalog.
+#### GraphQL (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/user.html](https://docs.valence.desire2learn.com/res/user.html)
-- **Base URL:** `https://{host}/d2l/api/lp`
+GraphQL schemas.
 
-### Brightspace Enrollments API
+- [D2L Brightspace GraphQL Schema](https://apis.io/graphqls/brightspace/d2l-graphql/)
 
-Enroll and unenroll users in org units, list users enrolled in a course or department, list a user's org units, read the caller's own enrollments, and run batch enrollment operations.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/enroll.html](https://docs.valence.desire2learn.com/res/enroll.html)
-- **Base URL:** `https://{host}/d2l/api/lp`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Brightspace Org Units API
+- [Brightspace Agentic Access](https://apis.io/agentic-access/brightspace/brightspace-agentic-access/)
 
-Read and manage the organization structure - org units and their relationships, org unit types, course offerings, departments and semesters, the recycle bin, and organization info.
+#### Collections (14)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/orgunit.html](https://docs.valence.desire2learn.com/res/orgunit.html)
-- **Base URL:** `https://{host}/d2l/api/lp`
+Postman and Open Collection request collections.
 
-### Brightspace Content API
+- [D2L Brightspace Valence API](https://apis.io/collections/brightspace/open-brightspace/)
+- [D2L Brightspace Valence Learning Framework Assignments API](https://apis.io/collections/brightspace/open-brightspace-assignments-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Calendar API](https://apis.io/collections/brightspace/open-brightspace-calendar-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Content API](https://apis.io/collections/brightspace/open-brightspace-content-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Data Hub API](https://apis.io/collections/brightspace/open-brightspace-data-hub-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Discussions API](https://apis.io/collections/brightspace/open-brightspace-discussions-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Enrollments API](https://apis.io/collections/brightspace/open-brightspace-enrollments-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Grades API](https://apis.io/collections/brightspace/open-brightspace-grades-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Learning Outcomes API](https://apis.io/collections/brightspace/open-brightspace-learning-outcomes-api/)
+- [D2L Brightspace Valence Learning Framework Assignments News API](https://apis.io/collections/brightspace/open-brightspace-news-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Org Units API](https://apis.io/collections/brightspace/open-brightspace-org-units-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Quizzes API](https://apis.io/collections/brightspace/open-brightspace-quizzes-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Users API](https://apis.io/collections/brightspace/open-brightspace-users-api/)
+- [D2L Brightspace Valence Learning Framework Assignments Versions API](https://apis.io/collections/brightspace/open-brightspace-versions-api/)
 
-Build and read course content - the root table of contents, modules and their structure, and topics and topic files within a course offering.
+#### Security (2)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/content.html](https://docs.valence.desire2learn.com/res/content.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+Authentication, trust centre, and vulnerability disclosure.
 
-### Brightspace Grades API
+- [Brightspace Authentication](https://apis.io/security/brightspace/brightspace-authentication/)
+- [Brightspace Domain Security](https://apis.io/security/brightspace/brightspace-domain-security/)
 
-Read and write the course gradebook - grade objects, per-user grade values (including my grades), final calculated grades, grade categories, grade schemes, and exemptions.
+#### OAuth scopes (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/grade.html](https://docs.valence.desire2learn.com/res/grade.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+The permissions the API asks for.
 
-### Brightspace Assignments (Dropbox) API
+- [Brightspace Scopes](https://apis.io/scopes/brightspace/brightspace-scopes/)
 
-Manage assignment (Dropbox) folders and categories, read and create learner submissions, download submitted files, and post instructor feedback and attachments.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/dropbox.html](https://docs.valence.desire2learn.com/res/dropbox.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+Published plans, tiers and prices.
 
-### Brightspace Quizzes API
+- [Brightspace Plans Pricing](https://apis.io/plans/brightspace/brightspace-plans-pricing/)
 
-Create and read quizzes, list attempts and questions, manage quiz categories, and configure per-learner special access.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/quiz.html](https://docs.valence.desire2learn.com/res/quiz.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+Published request limits.
 
-### Brightspace Discussions API
+- [Brightspace Rate Limits](https://apis.io/rate-limits/brightspace/brightspace-rate-limits/)
 
-Manage discussion forums, topics, and posts, including replies, ratings, flags, read status, approval, and attachments.
+#### FinOps (1)
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/discuss.html](https://docs.valence.desire2learn.com/res/discuss.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+What the API costs to run, by operation.
 
-### Brightspace Calendar API
+- [Brightspace Finops](https://apis.io/finops/brightspace/brightspace-finops/)
 
-Create, read, update, and delete course calendar events, list events and occurrences, and manage event presenters.
+## Where to find this API
 
-- **Human URL:** [https://docs.valence.desire2learn.com/res/calendar.html](https://docs.valence.desire2learn.com/res/calendar.html)
-- **Base URL:** `https://{host}/d2l/api/le`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Brightspace News (Announcements) API
-
-Create, read, update, publish, dismiss, and delete news (announcement) items, manage attachments, and configure cross-org-unit sharing.
-
-- **Human URL:** [https://docs.valence.desire2learn.com/res/news.html](https://docs.valence.desire2learn.com/res/news.html)
-- **Base URL:** `https://{host}/d2l/api/le`
-
-### Brightspace Learning Outcomes API
-
-Manage learning outcome sets and outcomes at the organization and org unit level, bulk import/export outcomes, and read and create outcome alignments against course activities.
-
-- **Human URL:** [https://docs.valence.desire2learn.com/res/outcomes.html](https://docs.valence.desire2learn.com/res/outcomes.html)
-- **Base URL:** `https://{host}/d2l/api/le`
-
-### Brightspace Data Hub API
-
-Discover and export bulk institutional data through the Data Hub and Data Export Framework - list data sets, create and monitor export jobs, download CSV/ZIP results, and enumerate Brightspace Data Sets extracts.
-
-- **Human URL:** [https://docs.valence.desire2learn.com/res/dataExport.html](https://docs.valence.desire2learn.com/res/dataExport.html)
-- **Base URL:** `https://{host}/d2l/api/lp`
-
-## Authentication
-
-The Valence API uses OAuth 2 (authorization code grant). Register an application in Brightspace to obtain a client ID and secret, direct a user through the D2L auth service to obtain an authorization code, and exchange it at the token endpoint (`https://auth.brightspace.com/core/connect/token`) for a short-lived access token plus refresh token. Send `Authorization: Bearer <access_token>` on every request. Scopes take the form `group:resource:action` (for example `users:userdata:read`). The legacy ID-Key authentication scheme is deprecated.
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/Brightspace)
-- [LinkedIn](https://www.linkedin.com/company/d2l)
 - [Website](https://www.d2l.com)
 - [Documentation](https://docs.valence.desire2learn.com)
-- [Plans](plans/brightspace-plans-pricing.yml)
-- [Rate Limits](rate-limits/brightspace-rate-limits.yml)
-- [Fin Ops](finops/brightspace-finops.yml)
+- [Blog](https://www.d2l.com/blog/all/)
+- [GitHub](https://github.com/Brightspace)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/brightspace/](https://apis.io/providers/brightspace/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for D2L Brightspace: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/brightspace/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
